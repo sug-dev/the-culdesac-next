@@ -220,19 +220,19 @@ export default function Page() {
     }
 
     return (
-        <div className='bg-gray-100 dark:bg-neutral-800 flex-1 relative flex flex-col'>
+        <div className='w-full sm:h-dvh relative flex flex-col'>
             <div className='w-full h-[52px] bg-white dark:bg-neutral-900 border-b dark:border-b-transparent flex items-center justify-between px-6 sm:hidden'>
                 <h1 className='font-bold text-xl dark:text-neutral-200'>Cul-De-Sac Chat</h1>
             </div>
 
             {loading ? (
                 <div className='h-full w-full flex flex-col gap-8 items-center justify-center'>
-                    <div className="lds-ripple"><div></div><div></div></div>
+                    <div className="lds-ripple"><div className='border-[4px] border-gray-400'></div><div className='border-[4px] border-gray-400'></div></div>
                     <h1 className='text-gray-400'>Loading...</h1>
                 </div>
             ) : (
                 <>
-                    <div ref={bottomScroll} className='w-full flex-1 overflow-y-scroll overflow-x-hidden sm:pt-8 chatBg relative'>
+                    <div ref={bottomScroll} className='w-full flex-1 overflow-y-scroll overflow-x-hidden sm:pt-8 relative'>
                         {messages ? (
                             <div className='px-3 py-3'>
                                 {messages.map((message: Message, index) => {
@@ -260,7 +260,7 @@ export default function Page() {
                                                     <Image loader={imageLoader} src={message.image} alt="" width={250} height={250} className='rounded-lg mb-1'/>
                                                 )}
                                                 {message.messageText && (
-                                                    <p className={`inline-block p-1.5 px-3 rounded-lg ${isUserMessage ? 'bg-blue-500 dark:bg-blue-800 text-white dark:text-neutral-100' : 'bg-gray-200 dark:bg-neutral-800 text-black dark:text-neutral-300'} max-w-[800px] sm:max-w-64`}>
+                                                    <p className={`inline-block p-1.5 px-3 rounded-lg ${isUserMessage ? 'bg-blue-500 dark:bg-blue-800 text-white dark:text-neutral-100' : 'bg-gray-200 dark:bg-neutral-900/50 backdrop-blur-sm text-black dark:text-neutral-300'} max-w-[800px] sm:max-w-64`}>
                                                         {message.messageText}
                                                     </p>
                                                 )}
@@ -273,13 +273,13 @@ export default function Page() {
                         ) : ( <div></div> )}
                     </div>
 
-                    <div className='w-full h-32 bg-white dark:bg-neutral-900 border-t dark:border-t-neutral-800 flex items-center justify-center p-3 gap-3 sm:h-16 relative'>
+                    <div className='w-full h-32 bg-white dark:bg-[#0d0d0d] flex items-center justify-center p-3 gap-3 sm:h-16 relative'>
                         {!session ? (
                             <div className='absolute top-[-25px] left-0 w-full text-center'>
                                 {/* <h1 className='text-gray-300 dark:text-neutral-600 font-light text-xs translate-y-[8px]'>If you are not logged in, your messages will not persist.</h1> */}
                             </div>
                         ) : null}
-                        <textarea name="message" value={messageTextContent} onChange={handleChange} placeholder='Enter a message...' className='resize-none border dark:border-transparent dark:bg-neutral-800 dark:text-neutral-300 rounded-lg h-full flex-1 p-3 py-2 sm:px-3 sm:py-1.5' />
+                        <textarea name="message" value={messageTextContent} onChange={handleChange} placeholder='Enter a message...' className='resize-none border dark:border-transparent dark:bg-neutral-900 dark:text-neutral-300 rounded-lg h-full flex-1 p-3 py-2 sm:px-3 sm:py-1.5' />
                         <div className='flex flex-col gap-3 h-full'>
                             <div className='flex gap-3 flex-1 sm:hidden'>
                                 <button className='rounded-lg bg-gray-300 dark:bg-neutral-800 text-white w-1/2 cursor-not-allowed' onClick={scrolling}>G</button>

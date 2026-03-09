@@ -23,8 +23,8 @@ const unSelectedDivStyle = 'p-2 flex items-center rounded-lg border border-trans
 const selectedH1Style = 'font-light text-blue-500'
 const unSelectedH1Style = 'font-light text-white dark:text-neutral-400'
 
-const toggledNavStyle = 'h-screen w-64 bg-blue-500 dark:bg-[#0d0d0d] flex flex-col p-3 pt-2 gap-6 sm:w-screen sm:h-full sm:z-40 sm:overflow-y-hidden sm:absolute'
-const hiddenNavStyle = 'h-screen w-64 bg-blue-500 dark:bg-[#0d0d0d] flex flex-col p-3 pt-2 gap-6 sm:w-screen sm:h-auto sm:z-40 sm:overflow-y-hidden sm:absolute sm:pb-0'
+const toggledNavStyle = 'h-screen w-72 bg-blue-500 dark:bg-[#0d0d0d] flex flex-col p-3 pt-2 gap-6 sm:w-screen sm:h-full sm:z-40 sm:overflow-y-hidden sm:absolute'
+const hiddenNavStyle = 'h-screen w-72 bg-blue-500 dark:bg-[#0d0d0d] flex flex-col p-3 pt-2 gap-6 sm:w-screen sm:h-auto sm:z-40 sm:overflow-y-hidden sm:absolute sm:pb-0'
 
 const navLinksShownStyle = 'flex flex-col gap-6'
 const navLinksHiddenStyle = 'flex flex-col gap-6 sm:hidden'
@@ -54,6 +54,7 @@ export default function Nav() {
     })
     const [navToggled, setNavToggled] = useState(false)
     const [loginUrl, setLoginUrl] = useState(`/login?ref=${pathname}`)
+    const [num, setNum] = useState(1)
 
     const navToggle = () => {
         setNavToggled(!navToggled)
@@ -79,12 +80,45 @@ export default function Nav() {
         })
     }
 
+    useEffect(() => {   
+        // console.log(pathname.split('/')[1])
+    }, [])
+
+    const Header = () => {
+        if (pathname.split('/')[1] === 'flashcards') {
+            return (
+                <>
+                    <h1 className='text-white dark:text-neutral-200 font-black text-3xl text-center flex gap-2 items-center'><div className='w-[10px] h-[10px] rounded-full bg-white'></div>FLASHCARDS</h1>
+                </>
+            )
+        } else if (pathname.split('/')[1] === 'chat') {
+            return (
+                <>
+                    <h1 className='text-white dark:text-neutral-200 font-black text-3xl text-center flex gap-2 items-center'><div className='w-[10px] h-[10px] rounded-full bg-white'></div>CHAT</h1>
+                </>
+            )
+        } else if (pathname.split('/')[1] === 'blog') {
+            return (
+                <>
+                    <h1 className='text-white dark:text-neutral-200 font-black text-3xl text-center flex gap-2 items-center'><div className='w-[10px] h-[10px] rounded-full bg-white'></div>BLOG</h1>
+                </>
+            )
+        } else {
+            return (
+                <>
+                    {/* <h1 className='text-lg font-light text-white dark:text-neutral-200'>the</h1> */}
+                    <h1 className='text-white dark:text-neutral-200 font-black text-3xl text-center flex gap-1 items-center'><span className='text-lg font-light text-white dark:text-neutral-200 mr-1 mt-auto'>the</span>CUL<div className='w-[10px] h-[10px] rounded-full bg-white'></div>DE<div className='w-[10px] h-[10px] rounded-full bg-white'></div>SAC</h1>
+                </>
+            )
+        } 
+        
+    }
+
     return (
         <nav className={navToggled ? toggledNavStyle : hiddenNavStyle}>
             <div className={navToggled ? 'border-b pb-2 w-full flex items-center justify-center sm:justify-between sm:border-b-1 dark:border-b-neutral-800' : 'border-b pb-2 w-full flex items-center justify-center sm:justify-between sm:border-b-0 dark:border-b-neutral-800'}>
                 <Link href="/" onClick={() => handleClick('/')} className='flex flex-col sm:flex-row sm:gap-2 sm:items-end'>
-                    <h1 className='text-lg font-light text-white dark:text-neutral-200 text-center sm:text-left'>the</h1>
-                    <h1 className='text-white dark:text-neutral-200 font-black text-3xl text-center flex gap-0.5 items-center'>CUL<div className='w-[10px] h-[10px] rounded-full bg-white'></div>DE<div className='w-[10px] h-[10px] rounded-full bg-white'></div>SAC</h1>
+                    <Header />
                 </Link>
                 <div className='hidden sm:flex h-6 w-7 cursor-pointer flex flex-col justify-between' onClick={navToggle}>
                     <div className={navToggled ? 'bg-white h-[3px] rounded-lg w-full rotate-45 translate-y-[9px] transition-all duration-300' : 'bg-white h-[3px] rounded-lg w-full rotate-0 transition-all duration-300'}></div>
