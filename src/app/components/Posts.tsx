@@ -2,6 +2,19 @@
 
 import React, {useEffect, useState} from 'react'
 import { useSession } from 'next-auth/react'
+import Loader from './Loader'
+
+export function DeleteIcon() {
+    return (
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M10 11V17" stroke="#fff" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"></path> <path d="M14 11V17" stroke="#fff" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"></path> <path d="M4 7H20" stroke="#fff" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"></path> <path d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z" stroke="#fff" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"></path> <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#fff" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"></path> </g></svg>
+    )
+}
+
+export function EditIcon() {
+    return (
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#fff" stroke="#fff"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <title></title> <g id="Complete"> <g id="edit"> <g> <path d="M20,16v4a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V6A2,2,0,0,1,4,4H8" fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1"></path> <polygon fill="none" points="12.5 15.8 22 6.2 17.8 2 8.3 11.5 8 16 12.5 15.8" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1"></polygon> </g> </g> </g> </g></svg>
+    )
+}
 
 export default function Posts({ tag, userLoggedIn }: { tag: string, userLoggedIn: string }) {
 
@@ -78,13 +91,10 @@ export default function Posts({ tag, userLoggedIn }: { tag: string, userLoggedIn
     }
 
     return (
-        <div className='overflow-hidden flex-1'>
-            <div className='h-full w-full divide-y dark:divide-neutral-700 overflow-y-scroll'>
+        <div className='h-full overflow-y-scroll'>
+            <div className='w-full h-full divide-y dark:divide-neutral-700'>
                 {loading ? (
-                    <div className='h-full w-full flex flex-col gap-8 items-center justify-center'>
-                        <div className="lds-ripple"><div></div><div></div></div>
-                        <h1 className='text-gray-400'>Loading...</h1>
-                    </div>
+                    <Loader />
                 ) : (
                     filteredPosts.length > 0 ? (filteredPosts.map((post, index) => (
                         <div key={index} className='p-8 py-12 flex flex-col gap-5 bg-white dark:bg-neutral-900 sm:px-3 relative'>
@@ -99,10 +109,9 @@ export default function Posts({ tag, userLoggedIn }: { tag: string, userLoggedIn
                             </div>
                             <div className='font-light text-sm whitespace-pre-wrap max-w-[800px] dark:text-neutral-400' dangerouslySetInnerHTML={{ __html: post.content }} />
                             {(session && session.user && user == post.name) ? (
-                                <div className='flex gap-2 absolute bottom-3 right-3'>
-                                    <button className='text-blue-500 hover:underline' onClick={() => editPost(post._id)}>Edit</button>
-                                    <span className='dark:text-neutral-700'>/</span>
-                                    <button className='text-red-500 hover:underline' onClick={() => deletePost(post._id)}>Delete</button>
+                                <div className='flex gap-3'>
+                                    <button className='bg-blue-900 w-8 h-8 p-1.5 rounded' onClick={() => editPost(post._id)}><EditIcon /></button>
+                                    <button className='bg-red-900 w-8 h-8 p-1 rounded' onClick={() => deletePost(post._id)}><DeleteIcon /></button>
                                 </div>
                             ) : null}
                         </div>

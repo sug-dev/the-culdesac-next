@@ -26,7 +26,7 @@ export default function Page() {
 
     return (
         <Suspense>
-            <div className='bg-gray-100 dark:bg-neutral-900 flex-1 relative flex flex-col sm:pt-[52px] sm:w-full'>
+            <div className='bg-gray-100 dark:bg-neutral-900 h-full relative flex flex-col sm:pt-[52px] sm:w-screen'>
                 <Search text="Filter by tag..." func={toggleTag} currentUser={currentUser} />
                 <Posts tag={tag} userLoggedIn={currentUser}/>
             </div>

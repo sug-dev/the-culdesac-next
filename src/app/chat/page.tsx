@@ -7,6 +7,9 @@ import Link from 'next/link'
 import { useSession } from 'next-auth/react'
 import io, { Socket } from 'socket.io-client'
 import Image, { ImageLoaderProps } from 'next/image'
+import Loader from '../components/Loader'
+
+const send = "M10.3009 13.6949L20.102 3.89742M10.5795 14.1355L12.8019 18.5804C13.339 19.6545 13.6075 20.1916 13.9458 20.3356C14.2394 20.4606 14.575 20.4379 14.8492 20.2747C15.1651 20.0866 15.3591 19.5183 15.7472 18.3818L19.9463 6.08434C20.2845 5.09409 20.4535 4.59896 20.3378 4.27142C20.2371 3.98648 20.013 3.76234 19.7281 3.66167C19.4005 3.54595 18.9054 3.71502 17.9151 4.05315L5.61763 8.2523C4.48114 8.64037 3.91289 8.83441 3.72478 9.15032C3.56153 9.42447 3.53891 9.76007 3.66389 10.0536C3.80791 10.3919 4.34498 10.6605 5.41912 11.1975L9.86397 13.42C10.041 13.5085 10.1295 13.5527 10.2061 13.6118C10.2742 13.6643 10.3352 13.7253 10.3876 13.7933C10.4468 13.87 10.491 13.9585 10.5795 14.1355Z"
 
 const uid = v4()
 export default function Page() {
@@ -220,19 +223,16 @@ export default function Page() {
     }
 
     return (
-        <div className='w-full sm:h-dvh relative flex flex-col'>
+        <div className='w-full sm:h-dvh flex-1 relative flex flex-col bg-neutral-950'>
             <div className='w-full h-[52px] bg-white dark:bg-neutral-900 border-b dark:border-b-transparent flex items-center justify-between px-6 sm:hidden'>
                 <h1 className='font-bold text-xl dark:text-neutral-200'>Cul-De-Sac Chat</h1>
             </div>
 
             {loading ? (
-                <div className='h-full w-full flex flex-col gap-8 items-center justify-center'>
-                    <div className="lds-ripple"><div className='border-[4px] border-gray-400'></div><div className='border-[4px] border-gray-400'></div></div>
-                    <h1 className='text-gray-400'>Loading...</h1>
-                </div>
+                <Loader />
             ) : (
                 <>
-                    <div ref={bottomScroll} className='w-full flex-1 overflow-y-scroll overflow-x-hidden sm:pt-8 relative'>
+                    <div ref={bottomScroll} className='w-full flex-1 overflow-y-scroll overflow-x-hidden sm:mt-14 relative bg-neutral-900'>
                         {messages ? (
                             <div className='px-3 py-3'>
                                 {messages.map((message: Message, index) => {
@@ -254,13 +254,13 @@ export default function Page() {
                                             <div className={messageContainerClasses}>
                                                 {/* Display user name if the message is not from the user and previous message is from a different user */}
                                                 {!isUserMessage && !isSameUserAsPrevious && (
-                                                    <h1 className='text-xs text-gray-400 font-light absolute w-screen top-[-17px]'>{message.user}</h1>
+                                                    <h1 className='text-xs text-gray-400 font-light absolute w-screen top-[-17px] left-3'>{message.user}</h1>
                                                 )}
                                                 {message.image && (
                                                     <Image loader={imageLoader} src={message.image} alt="" width={250} height={250} className='rounded-lg mb-1'/>
                                                 )}
                                                 {message.messageText && (
-                                                    <p className={`inline-block p-1.5 px-3 rounded-lg ${isUserMessage ? 'bg-blue-500 dark:bg-blue-800 text-white dark:text-neutral-100' : 'bg-gray-200 dark:bg-neutral-900/50 backdrop-blur-sm text-black dark:text-neutral-300'} max-w-[800px] sm:max-w-64`}>
+                                                    <p className={`inline-block p-1.5 px-3 rounded-lg ${isUserMessage ? 'bg-blue-500 dark:bg-blue-800 text-white dark:text-neutral-100' : 'bg-gray-200 dark:bg-neutral-800 backdrop-blur-sm text-black dark:text-neutral-300'} max-w-[800px] sm:max-w-64`}>
                                                         {message.messageText}
                                                     </p>
                                                 )}
@@ -273,19 +273,19 @@ export default function Page() {
                         ) : ( <div></div> )}
                     </div>
 
-                    <div className='w-full h-32 bg-white dark:bg-[#0d0d0d] flex items-center justify-center p-3 gap-3 sm:h-16 relative'>
+                    <div className='w-full h-32 bg-white dark:bg-neutral-950 flex items-center justify-center p-3 gap-3 sm:h-16 relative'>
                         {!session ? (
                             <div className='absolute top-[-25px] left-0 w-full text-center'>
                                 {/* <h1 className='text-gray-300 dark:text-neutral-600 font-light text-xs translate-y-[8px]'>If you are not logged in, your messages will not persist.</h1> */}
                             </div>
                         ) : null}
-                        <textarea name="message" value={messageTextContent} onChange={handleChange} placeholder='Enter a message...' className='resize-none border dark:border-transparent dark:bg-neutral-900 dark:text-neutral-300 rounded-lg h-full flex-1 p-3 py-2 sm:px-3 sm:py-1.5' />
+                        <textarea name="message" value={messageTextContent} onChange={handleChange} placeholder='Enter a message...' className='resize-none border dark:border-transparent dark:bg-neutral-900 dark:text-neutral-300 rounded-full h-full flex-1 p-3 py-2 sm:px-3 sm:py-1.5' />
                         <div className='flex flex-col gap-3 h-full'>
-                            <div className='flex gap-3 flex-1 sm:hidden'>
+                            {/* <div className='flex gap-3 flex-1 sm:hidden'>
                                 <button className='rounded-lg bg-gray-300 dark:bg-neutral-800 text-white w-1/2 cursor-not-allowed' onClick={scrolling}>G</button>
                                 <button className='rounded-lg bg-gray-300 dark:bg-neutral-800 text-white w-1/2 cursor-not-allowed'>P</button>
-                            </div>
-                            <button className='bg-blue-500 dark:bg-blue-800 text-white font-bold rounded-lg h-3/5 p-3 px-5 hover:bg-blue-600 dark:hover:bg-blue-900 sm:h-full sm:px-3 sm:py-1' onClick={setMessageToSend}>Send</button>
+                            </div> */}
+                            <button className='flex items-center justify-center bg-blue-500 dark:bg-blue-800 text-white font-bold rounded-full sm:h-full sm:aspect-square' onClick={setMessageToSend}><svg className='pt-0.5 pr-0.5' width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d={send} stroke="#fff" stroke-width="2" strokeLinecap="round" strokeLinejoin="round"></path> </g></svg></button>
                         </div>
                     </div>
                 </>

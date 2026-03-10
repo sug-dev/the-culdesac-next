@@ -17,14 +17,14 @@ const gamesIcon = "M8 8H8.01M16 8H16.01M12 12H12.01M16 16H16.01M8 16H8.01M7.2 20
 const cardIcon = "M11 4H7.2C6.0799 4 5.51984 4 5.09202 4.21799C4.71569 4.40974 4.40973 4.7157 4.21799 5.09202C4 5.51985 4 6.0799 4 7.2V16.8C4 17.9201 4 18.4802 4.21799 18.908C4.40973 19.2843 4.71569 19.5903 5.09202 19.782C5.51984 20 6.0799 20 7.2 20H16.8C17.9201 20 18.4802 20 18.908 19.782C19.2843 19.5903 19.5903 19.2843 19.782 18.908C20 18.4802 20 17.9201 20 16.8V12.5M15.5 5.5L18.3284 8.32843M10.7627 10.2373L17.411 3.58902C18.192 2.80797 19.4584 2.80797 20.2394 3.58902C21.0205 4.37007 21.0205 5.6364 20.2394 6.41745L13.3774 13.2794C12.6158 14.0411 12.235 14.4219 11.8012 14.7247C11.4162 14.9936 11.0009 15.2162 10.564 15.3882C10.0717 15.582 9.54378 15.6885 8.48793 15.9016L8 16L8.04745 15.6678C8.21536 14.4925 8.29932 13.9048 8.49029 13.3561C8.65975 12.8692 8.89125 12.4063 9.17906 11.9786C9.50341 11.4966 9.92319 11.0768 10.7627 10.2373Z"
 
 
-const selectedDivStyle = 'bg-white p-2 flex items-center rounded-lg border border-transparent cursor-pointer hover:border-white dark:hover:border-neutral-800'
-const unSelectedDivStyle = 'p-2 flex items-center rounded-lg border border-transparent cursor-pointer hover:border-white dark:hover:border-neutral-800'
+const selectedDivStyle = 'bg-white py-2 flex items-center cursor-pointer'
+const unSelectedDivStyle = 'py-2 flex items-center cursor-pointer'
 
 const selectedH1Style = 'font-light text-blue-500'
 const unSelectedH1Style = 'font-light text-white dark:text-neutral-400'
 
-const toggledNavStyle = 'h-screen w-72 bg-blue-500 dark:bg-[#0d0d0d] flex flex-col p-3 pt-2 gap-6 sm:w-screen sm:h-full sm:z-40 sm:overflow-y-hidden sm:absolute'
-const hiddenNavStyle = 'h-screen w-72 bg-blue-500 dark:bg-[#0d0d0d] flex flex-col p-3 pt-2 gap-6 sm:w-screen sm:h-auto sm:z-40 sm:overflow-y-hidden sm:absolute sm:pb-0'
+const toggledNavStyle = 'h-screen w-72 bg-blue-500 dark:bg-neutral-950 flex flex-col p-2 pt-2 gap-6 sm:w-screen sm:h-full sm:z-40 sm:overflow-y-hidden sm:absolute'
+const hiddenNavStyle = 'h-screen w-72 bg-blue-500 dark:bg-neutral-950 flex flex-col p-2 pt-2 gap-6 sm:w-screen sm:h-auto sm:z-40 sm:overflow-y-hidden sm:absolute sm:pb-0'
 
 const navLinksShownStyle = 'flex flex-col gap-6'
 const navLinksHiddenStyle = 'flex flex-col gap-6 sm:hidden'
@@ -55,6 +55,8 @@ export default function Nav() {
     const [navToggled, setNavToggled] = useState(false)
     const [loginUrl, setLoginUrl] = useState(`/login?ref=${pathname}`)
     const [num, setNum] = useState(1)
+
+    const [gamesToggled, setGamesToggled] = useState(false)
 
     const navToggle = () => {
         setNavToggled(!navToggled)
@@ -88,26 +90,26 @@ export default function Nav() {
         if (pathname.split('/')[1] === 'flashcards') {
             return (
                 <>
-                    <h1 className='text-white dark:text-neutral-200 font-black text-3xl text-center flex gap-2 items-center'><div className='w-[10px] h-[10px] rounded-full bg-white'></div>FLASHCARDS</h1>
+                    <h1 className='text-white dark:text-neutral-200 font-black text-3xl flex gap-2 items-center'><div className='w-[10px] h-[10px] rounded-full bg-white'></div>FLASHCARDS</h1>
                 </>
             )
         } else if (pathname.split('/')[1] === 'chat') {
             return (
                 <>
-                    <h1 className='text-white dark:text-neutral-200 font-black text-3xl text-center flex gap-2 items-center'><div className='w-[10px] h-[10px] rounded-full bg-white'></div>CHAT</h1>
+                    <h1 className='text-white dark:text-neutral-200 font-black text-3xl flex gap-2 items-center'><div className='w-[10px] h-[10px] rounded-full bg-white'></div>CHAT</h1>
                 </>
             )
         } else if (pathname.split('/')[1] === 'blog') {
             return (
                 <>
-                    <h1 className='text-white dark:text-neutral-200 font-black text-3xl text-center flex gap-2 items-center'><div className='w-[10px] h-[10px] rounded-full bg-white'></div>BLOG</h1>
+                    <h1 className='text-white dark:text-neutral-200 font-black text-3xl flex gap-2 items-center'><div className='w-[10px] h-[10px] rounded-full bg-white'></div>BLOG</h1>
                 </>
             )
         } else {
             return (
                 <>
                     {/* <h1 className='text-lg font-light text-white dark:text-neutral-200'>the</h1> */}
-                    <h1 className='text-white dark:text-neutral-200 font-black text-3xl text-center flex gap-1 items-center'><span className='text-lg font-light text-white dark:text-neutral-200 mr-1 mt-auto'>the</span>CUL<div className='w-[10px] h-[10px] rounded-full bg-white'></div>DE<div className='w-[10px] h-[10px] rounded-full bg-white'></div>SAC</h1>
+                    <h1 className='text-white dark:text-neutral-200 font-black text-3xl flex gap-1 items-center'><span className='text-lg font-light text-white dark:text-neutral-200 mr-1 mt-auto'>the</span>CUL<div className='w-[10px] h-[10px] rounded-full bg-white'></div>DE<div className='w-[10px] h-[10px] rounded-full bg-white'></div>SAC</h1>
                 </>
             )
         } 
@@ -116,8 +118,8 @@ export default function Nav() {
 
     return (
         <nav className={navToggled ? toggledNavStyle : hiddenNavStyle}>
-            <div className={navToggled ? 'border-b pb-2 w-full flex items-center justify-center sm:justify-between sm:border-b-1 dark:border-b-neutral-800' : 'border-b pb-2 w-full flex items-center justify-center sm:justify-between sm:border-b-0 dark:border-b-neutral-800'}>
-                <Link href="/" onClick={() => handleClick('/')} className='flex flex-col sm:flex-row sm:gap-2 sm:items-end'>
+            <div className={navToggled ? 'pb-2 w-full flex items-center justify-center sm:justify-between sm:border-b-1 dark:border-b-neutral-800' : 'pb-2 w-full flex items-center sm:justify-between sm:border-b-0 dark:border-b-neutral-800'}>
+                <Link href="/" onClick={() => handleClick('/')} className='flex flex-col sm:flex-row sm:gap-2 sm:items-end px-1'>
                     <Header />
                 </Link>
                 <div className='hidden sm:flex h-6 w-7 cursor-pointer flex flex-col justify-between' onClick={navToggle}>
@@ -140,25 +142,29 @@ export default function Nav() {
                     )
                 })}
 
-                <div className={'p-2 flex items-center border border-transparent cursor-pointer hover:border-b-white dark:hover:border-b-neutral-800 gamesTab relative'}>
-                    <div className='flex w-full items-center justify-between'>
+                <div className={'flex flex-col items-center cursor-pointer relative hidden'}>
+                    <div className='flex w-full items-center justify-between' onClick={() => {setGamesToggled(!gamesToggled)}}>
                         <div className='flex items-center'>
                             <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" className='mr-2'>
                                 <path d={gamesIcon} stroke="#e5e5e5" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                             <h1 className={unSelectedH1Style}>Games</h1>
                         </div>
-                        <Image src={DownArrow} width="30" height="10" alt="" className='w-5 h-5' />
+                        <Image src={DownArrow} width="30" height="10" alt="" className={`w-5 h-5 duration-300 ${gamesToggled ? `rotate-0` : `rotate-180`}`} />
                     </div>
-                    <div className='gamesSubTab flex-col w-full items-end gap-6 sm:gap-4 p-2 pt-20 sm:pt-14'>
-                        <Link href="/games/cookie-clicker" className='text-white dark:text-neutral-400 font-light hover:border-b-white dark:hover:border-b-neutral-800' onClick={navToggle}>Cookie Clicker</Link>
-                        <Link href="/games/tic-tac-toe" className='text-white dark:text-neutral-400 font-light hover:border-b-white dark:hover:border-b-neutral-800' onClick={navToggle}>Tic-Tac-Toe</Link>
-                        <Link href="/games/whiteboard" className='text-white dark:text-neutral-400 font-light hover:border-b-white dark:hover:border-b-neutral-800' onClick={navToggle}>Whiteboard</Link>
-                        <Link href="/games/produce-hero" className='text-white dark:text-neutral-400 font-light hover:border-b-white dark:hover:border-b-neutral-800' onClick={navToggle}>Produce Hero</Link>
-                        <Link href="/games/culdesac-defense" className='text-white dark:text-neutral-400 font-light hover:border-b-white dark:hover:border-b-neutral-800' onClick={navToggle}>The Cul-De-Sac Defense</Link>
-                        {/* <Link href="/games/luis-invaders" className='text-white dark:text-neutral-400 font-light hover:border-b-white dark:hover:border-b-neutral-800' onClick={navToggle}>Luis Invaders</Link> */}
-                        {/* <Link href="/games/battle-monsters" className='text-white dark:text-neutral-400 font-light hover:border-b-white dark:hover:border-b-neutral-800' onClick={navToggle}>Battle Monsters</Link> */}
-                    </div>
+                    {gamesToggled ? (
+                        <div className='flex flex-col w-full items-end gap-6 sm:gap-4 p-2 pt-10 sm:pt-6'>
+                            <Link href="/games/cookie-clicker" className='text-white dark:text-neutral-400 font-light hover:border-b-white dark:hover:border-b-neutral-800' onClick={navToggle}>Cookie Clicker</Link>
+                            <Link href="/games/tic-tac-toe" className='text-white dark:text-neutral-400 font-light hover:border-b-white dark:hover:border-b-neutral-800' onClick={navToggle}>Tic-Tac-Toe</Link>
+                            <Link href="/games/whiteboard" className='text-white dark:text-neutral-400 font-light hover:border-b-white dark:hover:border-b-neutral-800' onClick={navToggle}>Whiteboard</Link>
+                            <Link href="/games/produce-hero" className='text-white dark:text-neutral-400 font-light hover:border-b-white dark:hover:border-b-neutral-800' onClick={navToggle}>Produce Hero</Link>
+                            <Link href="/games/culdesac-defense" className='text-white dark:text-neutral-400 font-light hover:border-b-white dark:hover:border-b-neutral-800' onClick={navToggle}>The Cul-De-Sac Defense</Link>
+                            {/* <Link href="/games/luis-invaders" className='text-white dark:text-neutral-400 font-light hover:border-b-white dark:hover:border-b-neutral-800' onClick={navToggle}>Luis Invaders</Link> */}
+                            {/* <Link href="/games/battle-monsters" className='text-white dark:text-neutral-400 font-light hover:border-b-white dark:hover:border-b-neutral-800' onClick={navToggle}>Battle Monsters</Link> */}
+                        </div>
+                    ) : (
+                        <></>
+                    )}
                 </div>
                     
             </div>
