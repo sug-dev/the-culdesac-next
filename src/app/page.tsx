@@ -10,7 +10,7 @@ export default function Home() {
     const { data: session, status } = useSession()
 
     return (
-        <div className='flex sm:h-full sm:flex-col p-3 sm:p-3 gap-3 sm:pt-16 overflow-y-scroll'>
+        <div className='flex h-full w-full sm:flex-col p-3 sm:p-3 gap-3 sm:pt-16 overflow-y-scroll bg-neutral-900'>
 
             {session && session.user ? (
                 // <Ytdl />

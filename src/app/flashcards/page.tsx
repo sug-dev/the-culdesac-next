@@ -347,14 +347,14 @@ const Flashcards = () => {
     
 
     return (
-        <div className="w-full max-w-[800px] h-full sm:pt-[52px] flex flex-col z-10">
+        <div className="w-full h-full sm:pt-[52px] flex flex-col z-10">
 
             {loading ? (
                 <Loader />
             ) : (
                 openFolder && !openCard ? (
                     <>
-                    <div className="bg-neutral-900 w-screen flex flex-col gap-3 p-3 max-w-[800px] relative">
+                    <div className="bg-neutral-900 w-full sm:w-screen flex flex-col gap-3 p-3 relative">
                         <div className="flex items-center">
                             <Collapsible title={openFolder.name} open={false} back={() => {setOpenFolder(undefined)}}>
                                 <div className="flex items-center gap-3 w-full h-[33px]">
@@ -396,7 +396,7 @@ const Flashcards = () => {
                     </>
                 ) : openCard ? (
                     <>
-                    <div className="bg-neutral-900 w-screen flex flex-col gap-3 p-3 max-w-[800px] relative">
+                    <div className="bg-neutral-900 w-full sm:w-screen flex flex-col gap-3 p-3 relative">
                         <div className="flex items-center">
                             <h1 className="text-neutral-300 font-bold text-2xl">{openCard.front}</h1>
                         </div>
@@ -428,7 +428,7 @@ const Flashcards = () => {
                     </>
                 ) : (
                     <>
-                    <div className="bg-neutral-900 w-screen flex flex-col gap-3 pt-3 max-w-[800px]">
+                    <div className="bg-neutral-900 w-full sm:w-screen flex flex-col gap-3 pt-3">
                         <div className="flex justify-between px-3">
                             <Collapsible title="Categories" open={false} back={undefined}>
                                 <div className="flex items-center gap-3 h-[33px]">

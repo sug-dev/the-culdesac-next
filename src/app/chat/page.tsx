@@ -224,15 +224,14 @@ export default function Page() {
 
     return (
         <div className='w-full sm:h-dvh flex-1 relative flex flex-col bg-neutral-950'>
-            <div className='w-full h-[52px] bg-white dark:bg-neutral-900 border-b dark:border-b-transparent flex items-center justify-between px-6 sm:hidden'>
-                <h1 className='font-bold text-xl dark:text-neutral-200'>Cul-De-Sac Chat</h1>
-            </div>
-
             {loading ? (
                 <Loader />
             ) : (
                 <>
-                    <div ref={bottomScroll} className='w-full flex-1 overflow-y-scroll overflow-x-hidden sm:mt-14 relative bg-neutral-900'>
+                <div className='w-full h-[52px] bg-white dark:bg-neutral-900 border-b dark:border-b-transparent flex items-center justify-between px-3 sm:hidden'>
+                    <h1 className='font-bold text-xl dark:text-neutral-200'>Cul-De-Sac Chat</h1>
+                </div>
+                    <div ref={bottomScroll} className='w-full flex-1 overflow-y-scroll overflow-x-hidden sm:mt-14 relative bg-neutral-800'>
                         {messages ? (
                             <div className='px-3 py-3'>
                                 {messages.map((message: Message, index) => {
@@ -260,7 +259,7 @@ export default function Page() {
                                                     <Image loader={imageLoader} src={message.image} alt="" width={250} height={250} className='rounded-lg mb-1'/>
                                                 )}
                                                 {message.messageText && (
-                                                    <p className={`inline-block p-1.5 px-3 rounded-lg ${isUserMessage ? 'bg-blue-500 dark:bg-blue-800 text-white dark:text-neutral-100' : 'bg-gray-200 dark:bg-neutral-800 backdrop-blur-sm text-black dark:text-neutral-300'} max-w-[800px] sm:max-w-64`}>
+                                                    <p className={`inline-block p-1.5 px-3 rounded-lg ${isUserMessage ? 'bg-blue-500 dark:bg-blue-800 text-white dark:text-neutral-100' : 'bg-gray-200 dark:bg-neutral-700 backdrop-blur-sm text-black dark:text-neutral-300'} max-w-[800px] sm:max-w-64`}>
                                                         {message.messageText}
                                                     </p>
                                                 )}
@@ -273,19 +272,19 @@ export default function Page() {
                         ) : ( <div></div> )}
                     </div>
 
-                    <div className='w-full h-32 bg-white dark:bg-neutral-950 flex items-center justify-center p-3 gap-3 sm:h-16 relative'>
+                    <div className='w-full h-32 bg-white dark:bg-neutral-900 flex items-center justify-center p-3 gap-3 sm:h-16 relative'>
                         {!session ? (
                             <div className='absolute top-[-25px] left-0 w-full text-center'>
                                 {/* <h1 className='text-gray-300 dark:text-neutral-600 font-light text-xs translate-y-[8px]'>If you are not logged in, your messages will not persist.</h1> */}
                             </div>
                         ) : null}
-                        <textarea name="message" value={messageTextContent} onChange={handleChange} placeholder='Enter a message...' className='resize-none border dark:border-transparent dark:bg-neutral-900 dark:text-neutral-300 rounded-full h-full flex-1 p-3 py-2 sm:px-3 sm:py-1.5' />
+                        <textarea name="message" value={messageTextContent} onChange={handleChange} placeholder='Enter a message...' className='resize-none border dark:border-transparent dark:bg-neutral-800 dark:text-neutral-300 rounded-lg sm:rounded-full h-full flex-1 p-3 py-2 sm:px-3 sm:py-1.5' />
                         <div className='flex flex-col gap-3 h-full'>
                             {/* <div className='flex gap-3 flex-1 sm:hidden'>
                                 <button className='rounded-lg bg-gray-300 dark:bg-neutral-800 text-white w-1/2 cursor-not-allowed' onClick={scrolling}>G</button>
                                 <button className='rounded-lg bg-gray-300 dark:bg-neutral-800 text-white w-1/2 cursor-not-allowed'>P</button>
                             </div> */}
-                            <button className='flex items-center justify-center bg-blue-500 dark:bg-blue-800 text-white font-bold rounded-full sm:h-full sm:aspect-square' onClick={setMessageToSend}><svg className='pt-0.5 pr-0.5' width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d={send} stroke="#fff" stroke-width="2" strokeLinecap="round" strokeLinejoin="round"></path> </g></svg></button>
+                            <button className='flex items-center justify-center bg-blue-500 dark:bg-blue-800 text-white font-bold rounded-full sm:h-full sm:aspect-square p-3 sm:p-0' onClick={setMessageToSend}><svg className='pt-0.5 pr-0.5' width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d={send} stroke="#fff" stroke-width="2" strokeLinecap="round" strokeLinejoin="round"></path> </g></svg></button>
                         </div>
                     </div>
                 </>
