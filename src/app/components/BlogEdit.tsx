@@ -78,14 +78,14 @@ export default function BlogEdit() {
 
                 <div className='flex flex-col items-start gap-2 w-full max-w-[800px] '>
                     <div className='flex items-center w-full gap-2 sm:w-full sm:items-end sm:gap-1'>
-                        <input className='font-bold border dark:bg-neutral-700 dark:border-transparent dark:text-neutral-300 w-full rounded-lg p-2 sm:text-xl' name="title" onChange={handleChange} value={postData.title} />
+                        <input className='font-bold border dark:bg-neutral-700 dark:border-transparent dark:text-white w-full rounded-lg p-2 sm:text-xl' name="title" onChange={handleChange} value={postData.title} />
                     </div>
                     <div className='sm:w-full flex items-center gap-3'>
                         <h2 className='font-light text-gray-400 text-xs'>{postData.date}</h2>
-                        <input className='font-light text-gray-400 dark:text-neutral-300 text-xs bg-gray-200 dark:bg-neutral-700 p-1 px-2 rounded-full border-gray-300 border dark:border-transparent' type='text' name='tag' onChange={handleChange} value={postData.tag.toLowerCase()} />
+                        <input className='font-light text-gray-400 dark:text-white text-xs bg-gray-200 dark:bg-neutral-700 p-1 px-2 rounded-full border-gray-300 border dark:border-transparent' type='text' name='tag' onChange={handleChange} value={postData.tag.toLowerCase()} />
                     </div>
                 </div>
-                <textarea className='border p-2 rounded-lg h-96 w-full font-light text-sm dark:bg-neutral-700 dark:border-transparent dark:text-neutral-300 whitespace-pre-wrap max-w-[800px] resize-none' name="content" onChange={handleChange} value={ postData.content } />
+                <textarea className='border p-2 rounded-lg h-96 w-full font-light text-sm dark:bg-neutral-700 dark:border-transparent dark:text-white whitespace-pre-wrap max-w-[800px] resize-none' name="content" onChange={handleChange} value={ postData.content } />
                 <div className='flex gap-2 absolute bottom-3 right-3'>
                     <button className='text-blue-500 hover:underline' onClick={savePost}>Save</button>
                 </div>

@@ -96,26 +96,26 @@ export default function Nav() {
         if (pathname.split('/')[1] === 'flashcards') {
             return (
                 <>
-                    <h1 className='text-white dark:text-neutral-200 font-black text-3xl flex gap-2 items-center'><div className='w-[10px] h-[10px] rounded-full bg-white'></div>FLASHCARDS</h1>
+                    <h1 className='text-white dark:text-white font-black text-3xl flex gap-2 items-center'><div className='w-[10px] h-[10px] rounded-full bg-white'></div>FLASHCARDS</h1>
                 </>
             )
         } else if (pathname.split('/')[1] === 'chat') {
             return (
                 <>
-                    <h1 className='text-white dark:text-neutral-200 font-black text-3xl flex gap-2 items-center'><div className='w-[10px] h-[10px] rounded-full bg-white'></div>CHAT</h1>
+                    <h1 className='text-white dark:text-white font-black text-3xl flex gap-2 items-center'><div className='w-[10px] h-[10px] rounded-full bg-white'></div>CHAT</h1>
                 </>
             )
         } else if (pathname.split('/')[1] === 'blog') {
             return (
                 <>
-                    <h1 className='text-white dark:text-neutral-200 font-black text-3xl flex gap-2 items-center'><div className='w-[10px] h-[10px] rounded-full bg-white'></div>BLOG</h1>
+                    <h1 className='text-white dark:text-white font-black text-3xl flex gap-2 items-center'><div className='w-[10px] h-[10px] rounded-full bg-white'></div>BLOG</h1>
                 </>
             )
         } else {
             return (
                 <>
-                    {/* <h1 className='text-lg font-light text-white dark:text-neutral-200'>the</h1> */}
-                    <h1 className='text-white dark:text-neutral-200 font-black text-3xl flex gap-1 items-center'><span className='text-lg font-light text-white dark:text-neutral-200 mr-1 mt-auto'>the</span>CUL<div className='w-[10px] h-[10px] rounded-full bg-white'></div>DE<div className='w-[10px] h-[10px] rounded-full bg-white'></div>SAC</h1>
+                    {/* <h1 className='text-lg font-light text-white dark:text-white'>the</h1> */}
+                    <h1 className='text-white dark:text-white font-black text-3xl flex gap-1 items-center'><span className='text-lg font-light text-white dark:text-white mr-1 mt-auto'>the</span>CUL<div className='w-[10px] h-[10px] rounded-full bg-white'></div>DE<div className='w-[10px] h-[10px] rounded-full bg-white'></div>SAC</h1>
                 </>
             )
         } 
@@ -141,7 +141,7 @@ export default function Nav() {
                     return (
                         <Link key={key} className={link.selected ? selectedDivStyle : unSelectedDivStyle} href={key} onClick={() => {handleClick(key); navToggle()}}>
                             <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" className='mr-2'>
-                                <path d={link.icon} stroke={link.selected ? "#3b82f6" : "#e5e5e5"} strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+                                <path d={link.icon} stroke={link.selected ? "#3b82f6" : "white"} strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                             <h1 className={link.selected ? selectedH1Style : unSelectedH1Style}>{link.text}</h1>
                         </Link>
@@ -152,7 +152,7 @@ export default function Nav() {
                     <div className='flex w-full items-center justify-between' onClick={() => {setGamesToggled(!gamesToggled)}}>
                         <div className='flex items-center'>
                             <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" className='mr-2'>
-                                <path d={gamesIcon} stroke="#e5e5e5" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+                                <path d={gamesIcon} stroke="white" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                             <h1 className={unSelectedH1Style}>Games</h1>
                         </div>
@@ -177,8 +177,8 @@ export default function Nav() {
                     <div className='flex w-full items-center justify-between' onClick={() => {setToolsToggled(!toolsToggled)}}>
                         <div className='flex items-center'>
                             <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" className='mr-2'>
-                                <path d={toolsIcon1} stroke="#e5e5e5" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
-                                <path d={toolsIcon2} stroke="#e5e5e5" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+                                <path d={toolsIcon1} stroke="white" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+                                <path d={toolsIcon2} stroke="white" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                             <h1 className={unSelectedH1Style}>Tools</h1>
                         </div>
@@ -187,6 +187,7 @@ export default function Nav() {
                     {toolsToggled ? (
                         <div className='flex flex-col w-full items-end gap-6 sm:gap-4 p-2 pt-10 sm:pt-6'>
                             <Link href="/tools/pointillizer" className='text-white dark:text-neutral-400 font-light hover:border-b-white dark:hover:border-b-neutral-800' onClick={navToggle}>Image Pointillizer</Link>
+                            <Link href="/tools/kana-quiz" className='text-white dark:text-neutral-400 font-light hover:border-b-white dark:hover:border-b-neutral-800' onClick={navToggle}>Kana Quiz</Link>
                         </div>
                     ) : (
                         <></>
@@ -200,8 +201,8 @@ export default function Nav() {
                 {status == 'authenticated' ? (
                     <div className='flex items-center cursor-pointer' onClick={() => {signOut({ callbackUrl: '/', redirect:true }); navToggle()}}>
                         <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" className='mr-2'>
-                            <path d={profileIcon1} stroke="#e5e5e5" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
-                            <path d={profileIcon2} stroke="#e5e5e5" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+                            <path d={profileIcon1} stroke="white" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+                            <path d={profileIcon2} stroke="white" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                         <h1 className='text-center text-white dark:text-neutral-400 font-bold text-sm'>Logout</h1>
                     </div>
@@ -212,8 +213,8 @@ export default function Nav() {
                         <Link className='text-center text-white dark:text-neutral-400 font-bold text-sm cursor-pointer' href={loginUrl} onClick={navToggle}>
                             <div className='flex items-center'>
                                 <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" className='mr-2'>
-                                    <path d={profileIcon1} stroke="#e5e5e5" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
-                                    <path d={profileIcon2} stroke="#e5e5e5" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+                                    <path d={profileIcon1} stroke="white" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+                                    <path d={profileIcon2} stroke="white" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
                                 </svg>
                                 <h1 className='text-center text-white dark:text-neutral-400 font-bold text-sm'>Login</h1>
                             </div>

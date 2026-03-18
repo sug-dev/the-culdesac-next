@@ -147,22 +147,22 @@ const Page = () => {
                 <div id="ui_subcontainer" className='flex justify-between bg-neutral-800 w-full'>
                     <div className='flex items-center justify-between w-[85%] px-3 py-2'>
                         <div className="label_holder w-[30%]">
-                            <label className='text-neutral-300 font-bold text-xs' htmlFor="density">Density</label>
+                            <label className='text-white font-bold text-xs' htmlFor="density">Density</label>
                             <input type="range" id="density" min="0.2" max="3" step="0.1" value={params.density_strength} onInput={(e) => {handle_params('density_strength', e.target.value)}}/>
                         </div>
 
                         <div className="label_holder w-[30%]">
-                            <label className='text-neutral-300 font-bold text-xs' htmlFor="gamme">Gamma</label>
+                            <label className='text-white font-bold text-xs' htmlFor="gamme">Gamma</label>
                             <input type="range" id="gamma" min="0.2" max="3" step="0.1" value={params.brightness_gamma} onInput={(e) => {handle_params('brightness_gamma', e.target.value)}}/>
                         </div>
 
                         <div className="label_holder w-[30%]">
-                            <label className='text-neutral-300 font-bold text-xs' htmlFor="dots">Dots</label>
+                            <label className='text-white font-bold text-xs' htmlFor="dots">Dots</label>
                             <input type="range" id="dots" min="5000" max="320000" step="1000" value={params.dots} onInput={(e) => {handle_params('dots', e.target.value)}}/>
                         </div>
                     </div>
 
-                    <button className='bg-neutral-700 border border-neutral-600 text-neutral-300 text-xs font-bold cursor-pointer w-[15%]' id="save_btn" onClick={() => {save_image()}}>Save</button>
+                    <button className='bg-neutral-700 border border-neutral-600 text-white text-xs font-bold cursor-pointer w-[15%]' id="save_btn" onClick={() => {save_image()}}>Save</button>
                 </div>
             </div>
 
