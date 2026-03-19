@@ -2,8 +2,6 @@
 
 import React, {useEffect, useState} from 'react'
 
-import Search from '../components/Search'
-
 export default function Page() {
 
     const [items, setItems] = useState(null)
