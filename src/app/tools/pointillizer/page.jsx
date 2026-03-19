@@ -7,6 +7,7 @@ const Page = () => {
     const canvas_ref = useRef(null)
     const body_ref = useRef(null)
     const save_link_ref = useRef(null)
+    const [loaded, setLoaded] = useState(false)
 
     const [params, setParams] = useState({
         dots: 30000,
@@ -18,7 +19,6 @@ const Page = () => {
     })
 
     const brightness = useRef(null)
-    const [file, setFile] = useState()
 
 
     const handle_params = (field, value) => {
@@ -30,7 +30,6 @@ const Page = () => {
     }
 
     const upload_image = (v) => {
-        setFile(v)
         load_image(v)
     }
 
@@ -100,12 +99,8 @@ const Page = () => {
 
             render()
         }
-    }
 
-    function get_brightness(x, y) {
-        if (canvas_ref.current) {
-            return brightness[y * canvas_ref.current.width + x]
-        }
+        setLoaded(true)
     }
 
     function render() {
@@ -139,31 +134,35 @@ const Page = () => {
     }
     
     return (
-        <div ref={body_ref} className='flex flex-col items-center sm:w-full sm:pt-14 bg-neutral-900 flex-1'>
+        <div ref={body_ref} className='flex flex-col items-center sm:w-full sm:pt-14 bg-m flex-1 sm:border-b border-light'>
             <a href="#" className='hidden' ref={save_link_ref}></a>
             <div id="ui_container" className='flex flex-col items-center w-full max-w-[100vw]'>
-                <input className='bg-neutral-900 p-3 w-full text-white text-xs' type="file" name="image" id="image" onChange={(e) => {upload_image(e.target.files[0])}}/>
+                <input className='bg-d p-3 w-full text-white text-xs border-b border-light' type="file" name="image" id="image" onChange={(e) => {upload_image(e.target.files[0])}}/>
 
-                <div id="ui_subcontainer" className='flex justify-between bg-neutral-800 w-full'>
-                    <div className='flex items-center justify-between w-[85%] px-3 py-2'>
-                        <div className="label_holder w-[30%]">
-                            <label className='text-white font-bold text-xs' htmlFor="density">Density</label>
-                            <input type="range" id="density" min="0.2" max="3" step="0.1" value={params.density_strength} onInput={(e) => {handle_params('density_strength', e.target.value)}}/>
+                {loaded ? (
+                    <div id="ui_subcontainer" className='flex justify-between bg-d border-b border-light w-full'>
+                        <div className='flex items-center justify-between w-[85%] px-3 py-2'>
+                            <div className="label_holder w-[30%]">
+                                <label className='text-white font-bold text-xs' htmlFor="density">Density</label>
+                                <input type="range" id="density" min="0.2" max="3" step="0.1" value={params.density_strength} onInput={(e) => {handle_params('density_strength', e.target.value)}}/>
+                            </div>
+
+                            <div className="label_holder w-[30%]">
+                                <label className='text-white font-bold text-xs' htmlFor="gamme">Gamma</label>
+                                <input type="range" id="gamma" min="0.2" max="3" step="0.1" value={params.brightness_gamma} onInput={(e) => {handle_params('brightness_gamma', e.target.value)}}/>
+                            </div>
+
+                            <div className="label_holder w-[30%]">
+                                <label className='text-white font-bold text-xs' htmlFor="dots">Dots</label>
+                                <input type="range" id="dots" min="5000" max="320000" step="1000" value={params.dots} onInput={(e) => {handle_params('dots', e.target.value)}}/>
+                            </div>
                         </div>
 
-                        <div className="label_holder w-[30%]">
-                            <label className='text-white font-bold text-xs' htmlFor="gamme">Gamma</label>
-                            <input type="range" id="gamma" min="0.2" max="3" step="0.1" value={params.brightness_gamma} onInput={(e) => {handle_params('brightness_gamma', e.target.value)}}/>
-                        </div>
-
-                        <div className="label_holder w-[30%]">
-                            <label className='text-white font-bold text-xs' htmlFor="dots">Dots</label>
-                            <input type="range" id="dots" min="5000" max="320000" step="1000" value={params.dots} onInput={(e) => {handle_params('dots', e.target.value)}}/>
-                        </div>
+                        <button className='bg-bl border-l border-light text-white text-xs font-bold cursor-pointer w-[15%]' id="save_btn" onClick={() => {save_image()}}>Save</button>
                     </div>
-
-                    <button className='bg-neutral-700 border border-neutral-600 text-white text-xs font-bold cursor-pointer w-[15%]' id="save_btn" onClick={() => {save_image()}}>Save</button>
-                </div>
+                ) : (
+                    <></>
+                )}
             </div>
 
             <div className='flex-1 w-full flex items-center justify-center px-3'>

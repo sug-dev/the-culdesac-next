@@ -26,13 +26,13 @@ const selectedDivStyle = 'bg-white py-2 flex items-center cursor-pointer'
 const unSelectedDivStyle = 'py-2 flex items-center cursor-pointer'
 
 const selectedH1Style = 'font-light text-blue-500'
-const unSelectedH1Style = 'font-light text-white dark:text-neutral-400'
+const unSelectedH1Style = 'font-light text-neutral-400'
 
-const toggledNavStyle = 'h-screen w-72 bg-blue-500 dark:bg-neutral-950 flex flex-col p-3 gap-6 sm:w-screen sm:h-full sm:z-40 sm:overflow-y-hidden sm:absolute'
-const hiddenNavStyle = 'h-screen w-72 bg-blue-500 dark:bg-neutral-950 flex flex-col p-3 gap-6 sm:w-screen sm:h-auto sm:z-40 sm:overflow-y-hidden sm:absolute sm:pb-0'
+const toggledNavStyle = 'h-screen w-72 bg-d flex flex-col gap-6 border-r border-light sm:border-r-0 sm:border-b sm:w-screen sm:h-full sm:z-40 sm:overflow-y-hidden sm:absolute'
+const hiddenNavStyle = 'h-screen w-72 bg-d flex flex-col gap-6 border-r border-light sm:border-none sm:w-screen sm:h-auto sm:z-40 sm:overflow-y-hidden sm:absolute sm:pb-0'
 
-const navLinksShownStyle = 'flex flex-col gap-6'
-const navLinksHiddenStyle = 'flex flex-col gap-6 sm:hidden'
+const navLinksShownStyle = 'flex flex-col gap-6 p-3'
+const navLinksHiddenStyle = 'flex flex-col gap-6 p-3 sm:hidden'
 
 export default function Nav() {
 
@@ -66,6 +66,7 @@ export default function Nav() {
 
     const navToggle = () => {
         setNavToggled(!navToggled)
+        setToolsToggled(false)
     }
     
     useEffect(() => {
@@ -96,26 +97,26 @@ export default function Nav() {
         if (pathname.split('/')[1] === 'flashcards') {
             return (
                 <>
-                    <h1 className='text-white dark:text-white font-black text-3xl flex gap-2 items-center'><div className='w-[10px] h-[10px] rounded-full bg-white'></div>FLASHCARDS</h1>
+                    <h1 className='text-white font-black text-3xl flex gap-2 items-center'><div className='w-[10px] h-[10px] rounded-full bg-white'></div>FLASHCARDS</h1>
                 </>
             )
         } else if (pathname.split('/')[1] === 'chat') {
             return (
                 <>
-                    <h1 className='text-white dark:text-white font-black text-3xl flex gap-2 items-center'><div className='w-[10px] h-[10px] rounded-full bg-white'></div>CHAT</h1>
+                    <h1 className='text-white font-black text-3xl flex gap-2 items-center'><div className='w-[10px] h-[10px] rounded-full bg-white'></div>CHAT</h1>
                 </>
             )
         } else if (pathname.split('/')[1] === 'blog') {
             return (
                 <>
-                    <h1 className='text-white dark:text-white font-black text-3xl flex gap-2 items-center'><div className='w-[10px] h-[10px] rounded-full bg-white'></div>BLOG</h1>
+                    <h1 className='text-white font-black text-3xl flex gap-2 items-center'><div className='w-[10px] h-[10px] rounded-full bg-white'></div>BLOG</h1>
                 </>
             )
         } else {
             return (
                 <>
-                    {/* <h1 className='text-lg font-light text-white dark:text-white'>the</h1> */}
-                    <h1 className='text-white dark:text-white font-black text-3xl flex gap-1 items-center'><span className='text-lg font-light text-white dark:text-white mr-1 mt-auto'>the</span>CUL<div className='w-[10px] h-[10px] rounded-full bg-white'></div>DE<div className='w-[10px] h-[10px] rounded-full bg-white'></div>SAC</h1>
+                    {/* <h1 className='text-lg font-light text-white'>the</h1> */}
+                    <h1 className='text-white font-black text-3xl flex gap-1 items-center'><span className='text-lg font-light text-white mr-1 mt-auto'>the</span>CUL<div className='w-[10px] h-[10px] rounded-full bg-white'></div>DE<div className='w-[10px] h-[10px] rounded-full bg-white'></div>SAC</h1>
                 </>
             )
         } 
@@ -124,7 +125,7 @@ export default function Nav() {
 
     return (
         <nav className={navToggled ? toggledNavStyle : hiddenNavStyle}>
-            <div className={navToggled ? 'pb-2 w-full flex items-center sm:justify-between sm:border-b-1 dark:border-b-neutral-800' : 'pb-2 w-full flex items-center sm:justify-between sm:border-b-0 dark:border-b-neutral-800'}>
+            <div className={navToggled ? 'pb-2 w-full flex items-center sm:justify-between p-3 sm:sm:border-b border-light' : 'pb-2 w-full flex items-center sm:justify-between sm:sm:border-b border-light p-3'}>
                 <Link href="/" onClick={() => handleClick('/')} className='flex flex-col sm:flex-row sm:gap-2 sm:items-end px-1'>
                     <Header />
                 </Link>
@@ -160,13 +161,13 @@ export default function Nav() {
                     </div>
                     {gamesToggled ? (
                         <div className='flex flex-col w-full items-end gap-6 sm:gap-4 p-2 pt-10 sm:pt-6'>
-                            <Link href="/games/cookie-clicker" className='text-white dark:text-neutral-400 font-light hover:border-b-white dark:hover:border-b-neutral-800' onClick={navToggle}>Cookie Clicker</Link>
-                            <Link href="/games/tic-tac-toe" className='text-white dark:text-neutral-400 font-light hover:border-b-white dark:hover:border-b-neutral-800' onClick={navToggle}>Tic-Tac-Toe</Link>
-                            <Link href="/games/whiteboard" className='text-white dark:text-neutral-400 font-light hover:border-b-white dark:hover:border-b-neutral-800' onClick={navToggle}>Whiteboard</Link>
-                            <Link href="/games/produce-hero" className='text-white dark:text-neutral-400 font-light hover:border-b-white dark:hover:border-b-neutral-800' onClick={navToggle}>Produce Hero</Link>
-                            <Link href="/games/culdesac-defense" className='text-white dark:text-neutral-400 font-light hover:border-b-white dark:hover:border-b-neutral-800' onClick={navToggle}>The Cul-De-Sac Defense</Link>
-                            {/* <Link href="/games/luis-invaders" className='text-white dark:text-neutral-400 font-light hover:border-b-white dark:hover:border-b-neutral-800' onClick={navToggle}>Luis Invaders</Link> */}
-                            {/* <Link href="/games/battle-monsters" className='text-white dark:text-neutral-400 font-light hover:border-b-white dark:hover:border-b-neutral-800' onClick={navToggle}>Battle Monsters</Link> */}
+                            <Link href="/games/cookie-clicker" className='text-neutral-400 font-light hover:border-b-white hover:border-light' onClick={navToggle}>Cookie Clicker</Link>
+                            <Link href="/games/tic-tac-toe" className='text-neutral-400 font-light hover:border-b-white hover:border-light' onClick={navToggle}>Tic-Tac-Toe</Link>
+                            <Link href="/games/whiteboard" className='text-neutral-400 font-light hover:border-b-white hover:border-light' onClick={navToggle}>Whiteboard</Link>
+                            <Link href="/games/produce-hero" className='text-neutral-400 font-light hover:border-b-white hover:border-light' onClick={navToggle}>Produce Hero</Link>
+                            <Link href="/games/culdesac-defense" className='text-neutral-400 font-light hover:border-b-white hover:border-light' onClick={navToggle}>The Cul-De-Sac Defense</Link>
+                            {/* <Link href="/games/luis-invaders" className='text-neutral-400 font-light hover:border-b-white hover:border-light' onClick={navToggle}>Luis Invaders</Link> */}
+                            {/* <Link href="/games/battle-monsters" className='text-neutral-400 font-light hover:border-b-white hover:border-light' onClick={navToggle}>Battle Monsters</Link> */}
                         </div>
                     ) : (
                         <></>
@@ -174,7 +175,7 @@ export default function Nav() {
                 </div>
 
                 <div className={'flex flex-col items-center cursor-pointer relative'}>
-                    <div className='flex w-full items-center justify-between' onClick={() => {setToolsToggled(!toolsToggled)}}>
+                    <div className='flex w-full items-center gap-3' onClick={() => {setToolsToggled(!toolsToggled)}}>
                         <div className='flex items-center'>
                             <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" className='mr-2'>
                                 <path d={toolsIcon1} stroke="white" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
@@ -182,12 +183,12 @@ export default function Nav() {
                             </svg>
                             <h1 className={unSelectedH1Style}>Tools</h1>
                         </div>
-                        {/* <Image src={DownArrow} width="30" height="10" alt="" className={`w-5 h-5 duration-200 ${toolsToggled ? `rotate-0` : `rotate-180`}`} /> */}
+                        <Image src={DownArrow} width="20" height="7" alt="" className={`w-3 h-3 duration-200 ${toolsToggled ? `rotate-0` : `rotate-180`}`} />
                     </div>
                     {toolsToggled ? (
                         <div className='flex flex-col w-full items-end gap-6 sm:gap-4 p-2 pt-10 sm:pt-6'>
-                            <Link href="/tools/pointillizer" className='text-white dark:text-neutral-400 font-light hover:border-b-white dark:hover:border-b-neutral-800' onClick={navToggle}>Image Pointillizer</Link>
-                            <Link href="/tools/kana-quiz" className='text-white dark:text-neutral-400 font-light hover:border-b-white dark:hover:border-b-neutral-800' onClick={navToggle}>Kana Quiz</Link>
+                            <Link href="/tools/pointillizer" className='text-neutral-400 font-light hover:border-b-white hover:border-light' onClick={navToggle}>Image Pointillizer</Link>
+                            <Link href="/tools/kana-quiz" className='text-neutral-400 font-light hover:border-b-white hover:border-light' onClick={navToggle}>Kana Quiz</Link>
                         </div>
                     ) : (
                         <></>
@@ -197,26 +198,26 @@ export default function Nav() {
             </div>
 
 
-            <div className={navToggled ? 'w-full flex-1 flex items-end' : 'w-full flex-1 flex items-end sm:hidden'}>
+            <div className={navToggled ? 'w-full flex-1 flex items-end p-3' : 'w-full flex-1 flex items-end p-3 sm:hidden'}>
                 {status == 'authenticated' ? (
                     <div className='flex items-center cursor-pointer' onClick={() => {signOut({ callbackUrl: '/', redirect:true }); navToggle()}}>
                         <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" className='mr-2'>
                             <path d={profileIcon1} stroke="white" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
                             <path d={profileIcon2} stroke="white" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
-                        <h1 className='text-center text-white dark:text-neutral-400 font-bold text-sm'>Logout</h1>
+                        <h1 className='text-center text-neutral-400 font-bold text-sm'>Logout</h1>
                     </div>
                 ) : (
                     status == 'loading' ? (
                         null
                     ) : (
-                        <Link className='text-center text-white dark:text-neutral-400 font-bold text-sm cursor-pointer' href={loginUrl} onClick={navToggle}>
+                        <Link className='text-center text-neutral-400 font-bold text-sm cursor-pointer' href={loginUrl} onClick={navToggle}>
                             <div className='flex items-center'>
                                 <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" className='mr-2'>
                                     <path d={profileIcon1} stroke="white" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
                                     <path d={profileIcon2} stroke="white" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
                                 </svg>
-                                <h1 className='text-center text-white dark:text-neutral-400 font-bold text-sm'>Login</h1>
+                                <h1 className='text-center text-neutral-400 font-bold text-sm'>Login</h1>
                             </div>
                         </Link>
                     )

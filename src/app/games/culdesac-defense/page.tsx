@@ -1009,7 +1009,7 @@ const Page = () => {
 
     return (
         <div className="flex-1 flex flex-col gap-3 justify-center sm:pt-16 items-center chatBg">
-            <div ref={mainBoard} className="relative rounded sm:rounded-none bg-neutral-900 sm:border-x-none max-w-[1024px] max-h-[768px] overflow-hidden flex flex-col justify-evenly items-center"  style={{ aspectRatio: '4/3', width: '100%', height: 'auto' }}>
+            <div ref={mainBoard} className="relative rounded sm:rounded-none bg-d sm:border-x-none max-w-[1024px] max-h-[768px] overflow-hidden flex flex-col justify-evenly items-center"  style={{ aspectRatio: '4/3', width: '100%', height: 'auto' }}>
             {mainMenu ? (
                 <div className="w-full h-full absolute top-0 left-0 flex flex-col justify-evenly items-center">
                     <h1 className="text-neutral-200 font-bold text-5xl sm:text-2xl text-center">The Cul-De-Sac Defense</h1>
@@ -1120,7 +1120,7 @@ const Page = () => {
                                 if (tower.cost <= playerStats.money) {
                                     return (
                                         <div key={index} onClick={() => {grabTower(tower); setTowerPaneOpen(false)}} onTouchStart={() => {grabTower(tower); setTowerPaneOpen(false)}}  style={{ boxShadow: `inset 0px 0px 7px 2px rgba(0,0,0,0.1)` }} className={`${tower.name} tower-tab relative w-1/6 h-full flex items-center cursor-pointer justify-center`}>
-                                            <div className={`flex flex-col w-full h-full bg-neutral-800/25 justify-evenly absolute top-0 left-0 px-1 tower-stats`}>
+                                            <div className={`flex flex-col w-full h-full bg-d/25 justify-evenly absolute top-0 left-0 px-1 tower-stats`}>
                                                 <h1 className="text-neutral-200 font-bold sm:text-[10px]">${tower.cost}</h1>
                                                 <h1 className="text-neutral-200 font-bold sm:text-[10px]">{tower.damage} <span className="text-neutral-300 font-medium">dmg</span></h1>
                                                 <h1 className="text-neutral-200 font-bold sm:text-[10px]">{tower.range} <span className="text-neutral-300 font-medium">range</span></h1>
@@ -1131,7 +1131,7 @@ const Page = () => {
                                 } else {
                                     return (
                                         <div key={index} style={{ boxShadow: `inset 0px 0px 7px 2px rgba(0,0,0,0.1)` }} className={`${tower.name} tower-tab relative w-1/6 h-full flex items-center cursor-not-allowed justify-center opacity-25`}>
-                                            <div className={`flex flex-col w-full h-full bg-neutral-800/25 justify-evenly absolute top-0 left-0 px-1 tower-stats`}>
+                                            <div className={`flex flex-col w-full h-full bg-d/25 justify-evenly absolute top-0 left-0 px-1 tower-stats`}>
                                                 <h1 className="text-neutral-200 font-bold sm:text-[10px]">${tower.cost}</h1>
                                                 <h1 className="text-neutral-200 font-bold sm:text-[10px]">{tower.damage} <span className="text-neutral-300 font-medium">dmg</span></h1>
                                                 <h1 className="text-neutral-200 font-bold sm:text-[10px]">{tower.range} <span className="text-neutral-300 font-medium">range</span></h1>

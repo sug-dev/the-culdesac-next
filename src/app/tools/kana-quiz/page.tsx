@@ -322,41 +322,41 @@ const Page = () => {
     }
 
     return (
-        <div className='flex flex-col items-center sm:w-full sm:pt-14 bg-neutral-900 flex-1'>
+        <div className='flex flex-col items-center sm:w-full sm:pt-14 bg-m flex-1 sm:border-b border-light'>
             {!workingDeck ? (
                 <div className="w-full p-3 flex flex-col gap-3 items-center">
-                    <button className="text-white text-xl font-bold p-3 rounded-lg bg-cyan-700 w-full" onClick={() => {start_quiz(hiragana, 'Hiragana')}}>Hiragana Quiz</button>
-                    <button className="text-white text-xl font-bold p-3 rounded-lg bg-cyan-700 w-full" onClick={() => {start_quiz(katakana, 'Katakana')}}>Katakana Quiz</button>
+                    <button className="text-white text-xl font-bold p-3 rounded-lg bg-bl w-full" onClick={() => {start_quiz(hiragana, 'Hiragana')}}>Hiragana Quiz</button>
+                    <button className="text-white text-xl font-bold p-3 rounded-lg bg-bl w-full" onClick={() => {start_quiz(katakana, 'Katakana')}}>Katakana Quiz</button>
                 </div>   
             ) : (
                 <>
-                <div className="w-full bg-neutral-800 flex items-center justify-between">
+                <div className="w-full bg-d flex items-center justify-between border-b border-light">
                     <h1 className="text-white font-bold text-2xl p-3">{quiz}</h1>
-                    <button className="text-neutral-500 underline p-3" onClick={() => {reset()}}>Back</button>
+                    <button className="text-neutral-500 underline p-3 text-xs font-light" onClick={() => {reset()}}>Back</button>
                 </div>
-                <div className="w-full p-3 flex flex-col gap-3 items-center justify-center sm:justify-start flex-1">
-                    <div className="w-full max-w-[600px] rounded-xl bg-cyan-600 flex flex-col items-center p-3 gap-3 relative">
-                        <div className="w-full h-6 rounded-full bg-white relative overflow-hidden">
+                <div className="w-full p-9 flex flex-col gap-3 sm:justify-start flex-1">
+                    <div className="w-full max-w-[300px] rounded-xl bg-bl flex flex-col items-center p-3 gap-3 relative">
+                        <div className="w-full h-6 rounded-full bg-neutral-200 relative overflow-hidden">
                             <div className="absolute top-1 left-1 rounded-full h-4 bg-emerald-500 transition-all duration-300" style={{ width: `calc(1rem + ${progress * (100 - (1 / 16 * 100))}%)` }}>
 
                             </div>
                         </div>
-                        <div className="bg-white rounded-lg flex items-center justify-center w-full aspect-square">
+                        <div className="bg-neutral-200 rounded-lg flex items-center justify-center w-full aspect-square">
                             <h1 className="text-8xl text-black font-bold">{workingDeck.current.kana}</h1>
                         </div>
                         <div className="flex items-center justify-between w-full gap-3">
                             {workingDeck.answers.map((a, i) => {
                                 return (
                                     chosen ? (
-                                        <button key={i} className={`text-black font-bold p-3 rounded-lg border-2 border-white flex-1 ${a === workingDeck.current.romaji ? `bg-emerald-600 text-white` : chosen === a && workingDeck.current.romaji !== a ? `bg-red-600 text-white` : `bg-white`}`}>{a}</button>
+                                        <button key={i} className={`text-black font-bold p-3 rounded-lg border-2 border-neutral-200 flex-1 ${a === workingDeck.current.romaji ? `bg-emerald-600 text-white` : chosen === a && workingDeck.current.romaji !== a ? `bg-red-600 text-white` : `bg-neutral-200`}`}>{a}</button>
                                     ) : (
-                                        <button key={i} onClick={() => {setChosen(a)}} className="text-black font-bold p-3 rounded-lg bg-white border-2 border-white flex-1">{a}</button>
+                                        <button key={i} onClick={() => {setChosen(a)}} className="text-black font-bold p-3 rounded-lg bg-neutral-200 border-2 border-neutral-200 flex-1">{a}</button>
                                     )
                                 )
                             })}
                         </div>
                         {chosen ? (
-                            <button className="absolute bottom-[-42px] right-0 bg-cyan-600 text-white font-bold p-3 rounded-b-xl pt-4" onClick={() => check_answer(chosen)}>Next</button>
+                            <button className="absolute bottom-[-42px] right-0 bg-bl text-white font-bold p-3 rounded-b-xl pt-4" onClick={() => check_answer(chosen)}>Next</button>
                         ) : (
                             <></>
                         )}

@@ -3,7 +3,6 @@
 import React, {useEffect, useState, useRef} from 'react'
 import { v4 } from 'uuid'
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
 import { useSession } from 'next-auth/react'
 import io, { Socket } from 'socket.io-client'
 import Image, { ImageLoaderProps } from 'next/image'
@@ -223,15 +222,15 @@ export default function Page() {
     }
 
     return (
-        <div className='w-full sm:h-dvh flex-1 relative flex flex-col bg-neutral-950'>
+        <div className='w-full sm:h-dvh flex-1 relative flex flex-col bg-d'>
             {loading ? (
                 <Loader />
             ) : (
                 <>
-                <div className='w-full h-[52px] bg-white dark:bg-neutral-900 border-b dark:border-b-transparent flex items-center justify-between px-3 sm:hidden'>
-                    <h1 className='font-bold text-xl dark:text-neutral-200'>Cul-De-Sac Chat</h1>
+                <div className='w-full h-[52px] bg-white bg-d border-b border-light flex items-center justify-between px-3 sm:hidden'>
+                    <h1 className='font-bold text-xl text-white'>Cul-De-Sac Chat</h1>
                 </div>
-                    <div ref={bottomScroll} className='w-full flex-1 overflow-y-scroll overflow-x-hidden sm:mt-14 relative bg-neutral-800'>
+                    <div ref={bottomScroll} className='w-full flex-1 overflow-y-scroll overflow-x-hidden sm:mt-14 relative bg-m border-b border-light'>
                         {messages ? (
                             <div className='px-3 py-3'>
                                 {messages.map((message: Message, index) => {
@@ -253,13 +252,13 @@ export default function Page() {
                                             <div className={messageContainerClasses}>
                                                 {/* Display user name if the message is not from the user and previous message is from a different user */}
                                                 {!isUserMessage && !isSameUserAsPrevious && (
-                                                    <h1 className='text-xs text-gray-400 font-light absolute w-screen top-[-17px] left-3'>{message.user}</h1>
+                                                    <h1 className='text-xs text-neutral-500 font-light absolute w-screen top-[-17px] left-3'>{message.user}</h1>
                                                 )}
                                                 {message.image && (
                                                     <Image loader={imageLoader} src={message.image} alt="" width={250} height={250} className='rounded-lg mb-1'/>
                                                 )}
                                                 {message.messageText && (
-                                                    <p className={`inline-block p-1.5 px-3 rounded-lg ${isUserMessage ? 'bg-blue-500 dark:bg-blue-800 text-white dark:text-neutral-100' : 'bg-gray-200 dark:bg-neutral-700 backdrop-blur-sm text-black dark:text-white'} max-w-[800px] sm:max-w-64`}>
+                                                    <p className={`inline-block p-1.5 px-3 rounded-lg ${isUserMessage ? 'bg-bl text-white' : 'bg-neutral-700/75 text-white'} max-w-[800px] sm:max-w-64`}>
                                                         {message.messageText}
                                                     </p>
                                                 )}
@@ -272,19 +271,19 @@ export default function Page() {
                         ) : ( <div></div> )}
                     </div>
 
-                    <div className='w-full h-32 bg-white dark:bg-neutral-900 flex items-center justify-center p-3 gap-3 sm:h-16 relative'>
+                    <div className='w-full h-32 bg-d flex items-center justify-center p-3 gap-3 sm:h-16 relative'>
                         {!session ? (
                             <div className='absolute top-[-25px] left-0 w-full text-center'>
-                                {/* <h1 className='text-gray-300 dark:text-neutral-600 font-light text-xs translate-y-[8px]'>If you are not logged in, your messages will not persist.</h1> */}
+                                {/* <h1 className='text-gray-300 text-neutral-600 font-light text-xs translate-y-[8px]'>If you are not logged in, your messages will not persist.</h1> */}
                             </div>
                         ) : null}
-                        <textarea name="message" value={messageTextContent} onChange={handleChange} placeholder='Enter a message...' className='resize-none border dark:border-transparent dark:bg-neutral-800 dark:text-white rounded-lg sm:rounded-full h-full flex-1 p-3 py-2 sm:px-3 sm:py-1.5' />
+                        <textarea name="message" value={messageTextContent} onChange={handleChange} placeholder='Enter a message...' className='resize-none border border-light bg-m text-white rounded-lg sm:rounded-full h-full flex-1 p-3 py-2 sm:px-3 sm:py-1.5' />
                         <div className='flex flex-col gap-3 h-full'>
                             {/* <div className='flex gap-3 flex-1 sm:hidden'>
-                                <button className='rounded-lg bg-gray-300 dark:bg-neutral-800 text-white w-1/2 cursor-not-allowed' onClick={scrolling}>G</button>
-                                <button className='rounded-lg bg-gray-300 dark:bg-neutral-800 text-white w-1/2 cursor-not-allowed'>P</button>
+                                <button className='rounded-lg bg-gray-300 bg-d text-white w-1/2 cursor-not-allowed' onClick={scrolling}>G</button>
+                                <button className='rounded-lg bg-gray-300 bg-d text-white w-1/2 cursor-not-allowed'>P</button>
                             </div> */}
-                            <button className='flex items-center justify-center bg-blue-500 dark:bg-blue-800 text-white font-bold rounded-full sm:h-full sm:aspect-square p-3 sm:p-0' onClick={setMessageToSend}><svg className='pt-0.5 pr-0.5' width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d={send} stroke="#fff" stroke-width="2" strokeLinecap="round" strokeLinejoin="round"></path> </g></svg></button>
+                            <button className='flex items-center justify-center bg-bl text-white font-bold rounded-full sm:h-full sm:aspect-square p-3 sm:p-0' onClick={setMessageToSend}><svg className='pt-0.5 pr-0.5' width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d={send} stroke="#fff" stroke-width="2" strokeLinecap="round" strokeLinejoin="round"></path> </g></svg></button>
                         </div>
                     </div>
                 </>
