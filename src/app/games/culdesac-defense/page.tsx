@@ -1012,8 +1012,8 @@ const Page = () => {
             <div ref={mainBoard} className="relative rounded sm:rounded-none bg-d sm:border-x-none max-w-[1024px] max-h-[768px] overflow-hidden flex flex-col justify-evenly items-center"  style={{ aspectRatio: '4/3', width: '100%', height: 'auto' }}>
             {mainMenu ? (
                 <div className="w-full h-full absolute top-0 left-0 flex flex-col justify-evenly items-center">
-                    <h1 className="text-neutral-200 font-bold text-5xl sm:text-2xl text-center">The Cul-De-Sac Defense</h1>
-                    <h1 className="text-neutral-200 font-bold text-2xl sm:text-sm text-center">Choose A Level:</h1>
+                    <h1 className="text-emerald-200 font-bold text-5xl sm:text-2xl text-center">The Cul-De-Sac Defense</h1>
+                    <h1 className="text-emerald-200 font-bold text-2xl sm:text-sm text-center">Choose A Level:</h1>
                     <div className="w-full h-1/3 sm:h-1/2 flex items-center justify-center gap-1 px-1">
                         {allMaps.map((map, index) => {
                             return (
@@ -1027,20 +1027,20 @@ const Page = () => {
 
                 {!isGameRunning && alertShown.enabled ? (
                     <div className="w-full h-4/5 absolute top-0 left-0 flex flex-col gap-3 items-center justify-center mt-12 sm:mt-8 alertPane alertActive">
-                        <h1 className="bg-green-700 px-3 py-2 font-bold text-neutral-200 text-2xl sm:text-lg rounded border border-neutral-700 shadow-lg">{alertShown.message}</h1>
+                        <h1 className="bg-green-700 px-3 py-2 font-bold text-emerald-200 text-2xl sm:text-lg rounded border border-emerald-700 shadow-lg">{alertShown.message}</h1>
                         {alertShown.type === 'gameOver' ? (
-                            <button className="cursor-pointer text-neutral-200 hover:underline" onClick={resetGame}>New Game</button>
+                            <button className="cursor-pointer text-emerald-200 hover:underline" onClick={resetGame}>New Game</button>
                         ) : alertShown.type === 'gameComplete' ? (
-                            <button className="cursor-pointer text-neutral-200 hover:underline" onClick={resetGame}>Main Menu</button>
+                            <button className="cursor-pointer text-emerald-200 hover:underline" onClick={resetGame}>Main Menu</button>
                         ) : (
                             <></>
                         )}
                     </div>
                 ) : (
                     <div className="w-full h-4/5 absolute top-0 left-0 flex flex-col gap-3 items-center justify-center mt-12 sm:mt-8 alertPane alertInactive">
-                        <h1 className="bg-green-700 px-3 py-2 font-bold text-neutral-200 text-2xl sm:text-lg rounded border border-neutral-700 shadow-lg">{alertShown.message}</h1>
+                        <h1 className="bg-green-700 px-3 py-2 font-bold text-emerald-200 text-2xl sm:text-lg rounded border border-emerald-700 shadow-lg">{alertShown.message}</h1>
                         {alertShown.type === 'gameOver' ? (
-                            <button className="cursor-pointer text-neutral-200 hover:underline">New Game</button>
+                            <button className="cursor-pointer text-emerald-200 hover:underline">New Game</button>
                         ) : (
                             <></>
                         )}
@@ -1048,15 +1048,15 @@ const Page = () => {
                 )}
 
                 <div className="absolute top-0 left-0 w-auto flex flex-col items-start justify-center stat-pane bg-black/70 rounded-br-lg">
-                    <h1 className="text-neutral-200 font-bold text-sm sm:text-xs px-3 py-2 sm:px-2 sm:py-[2px] drop-shadow">Wave: {currentLevel + 1}</h1>
-                    <h1 className="text-neutral-200 font-bold text-sm sm:text-xs px-3 py-2 sm:px-2 sm:py-[2px] drop-shadow">${playerStats.money}</h1>
-                    <h1 className="text-neutral-200 font-bold text-sm sm:text-xs px-3 py-2 sm:px-2 sm:py-[2px] drop-shadow">❤️ {playerStats.lives}</h1>
+                    <h1 className="text-emerald-200 font-bold text-sm sm:text-xs px-3 py-2 sm:px-2 sm:py-[2px] drop-shadow">Wave: {currentLevel + 1}</h1>
+                    <h1 className="text-emerald-200 font-bold text-sm sm:text-xs px-3 py-2 sm:px-2 sm:py-[2px] drop-shadow">${playerStats.money}</h1>
+                    <h1 className="text-emerald-200 font-bold text-sm sm:text-xs px-3 py-2 sm:px-2 sm:py-[2px] drop-shadow">❤️ {playerStats.lives}</h1>
                 </div>
 
                 {!isGameRunning ? (
-                    <button className="absolute top-1 sm:top-1 right-3 sm:right-1 text-neutral-200 border-2 border-neutral-700 text-xs font-bold rounded-full bg-green-600 hover:bg-green-700 py-2 px-4 sm:px-2 sm:py-1 aspect-square start-btn" onClick={startGame}>Go</button>
+                    <button className="absolute top-1 sm:top-1 right-3 sm:right-1 text-emerald-200 border-2 border-emerald-700 text-xs font-bold rounded-full bg-green-600 hover:bg-green-700 py-2 px-4 sm:px-2 sm:py-1 aspect-square start-btn" onClick={startGame}>Go</button>
                 ) : (
-                    <button className="absolute top-1 sm:top-1 right-3 sm:right-1 text-neutral-200 border-2 border-neutral-700 text-xs font-bold rounded-full bg-green-700 py-2 px-4 sm:px-2 sm:py-1 opacity-50 cursor-not-allowed aspect-square start-btn">Go</button>
+                    <button className="absolute top-1 sm:top-1 right-3 sm:right-1 text-emerald-200 border-2 border-emerald-700 text-xs font-bold rounded-full bg-green-700 py-2 px-4 sm:px-2 sm:py-1 opacity-50 cursor-not-allowed aspect-square start-btn">Go</button>
                 )}
 
                 {!alertShown.enabled ? (
@@ -1081,7 +1081,7 @@ const Page = () => {
                         const container = mainBoard.current?.getBoundingClientRect()
                         if (container) {
                             return (
-                                <div key={index} className="flex items-center justify-center rounded-full absolute border-2 border-neutral-800 overflow-hidden" style={{ backgroundColor: `${enemy.color}`, top: `${enemy.pos.y}px`, left: `${enemy.pos.x}px`, boxShadow: `0px 0px 5px 2px rgba(0,0,0,0.15)`, width: `${(container.height) * 0.083}px`, aspectRatio: '1/1' }}><h1 className="font-bold text-neutral-200 sm:text-xs z-10">{enemy.hp}</h1>
+                                <div key={index} className="flex items-center justify-center rounded-full absolute border-2 border-emerald-800 overflow-hidden" style={{ backgroundColor: `${enemy.color}`, top: `${enemy.pos.y}px`, left: `${enemy.pos.x}px`, boxShadow: `0px 0px 5px 2px rgba(0,0,0,0.15)`, width: `${(container.height) * 0.083}px`, aspectRatio: '1/1' }}><h1 className="font-bold text-emerald-200 sm:text-xs z-10">{enemy.hp}</h1>
                                 </div>
                             )
                         }
@@ -1093,7 +1093,7 @@ const Page = () => {
                         const container = mainBoard.current?.getBoundingClientRect()
                         if (container) {
                             return (
-                                <div key={index} className="flex items-center justify-center rounded-full absolute border-2 border-neutral-800 overflow-hidden" style={{ backgroundColor: `black`, top: `${proj.pos.y}px`, left: `${proj.pos.x}px`, boxShadow: `0px 0px 5px 2px rgba(0,0,0,0.15)`, width: `${(container.height) * 0.033}px`, aspectRatio: '1/1' }}>
+                                <div key={index} className="flex items-center justify-center rounded-full absolute border-2 border-emerald-800 overflow-hidden" style={{ backgroundColor: `black`, top: `${proj.pos.y}px`, left: `${proj.pos.x}px`, boxShadow: `0px 0px 5px 2px rgba(0,0,0,0.15)`, width: `${(container.height) * 0.033}px`, aspectRatio: '1/1' }}>
                                 </div>
                             )
                         }
@@ -1101,30 +1101,30 @@ const Page = () => {
                 </div>
 
                 {holdingTower.enabled ? (
-                    <div onClick={() => setTower(holdingTower.tower.name, {x: boardMousePos.x - (32 * ratio), y: boardMousePos.y - (32 * ratio)} )} onTouchEnd={() => setTower(holdingTower.tower.name, {x: boardMousePos.x - (32 * ratio), y: boardMousePos.y - (32 * ratio)} )} style={{ top: `${boardMousePos.y - (32 * ratio)}px`, left: `${boardMousePos.x - (32 * ratio)}px`, width: `${(screen.height) * 0.083}px`, aspectRatio: '1/1', boxShadow: holdingTower.isCollided ? `0px 0px 0px ${holdingTower.tower.range * ratio}px rgba(255,0,0,0.50)` : `0px 0px 0px ${holdingTower.tower.range * ratio}px rgba(128,128,128,0.25)` }} className={`${holdingTower.tower.name} held-tower flex items-center justify-center cursor-pointer rounded-full bg-green-700 border-2 border-neutral-700 absolute`}><h1 className="font-bold text-neutral-200"></h1></div>
+                    <div onClick={() => setTower(holdingTower.tower.name, {x: boardMousePos.x - (32 * ratio), y: boardMousePos.y - (32 * ratio)} )} onTouchEnd={() => setTower(holdingTower.tower.name, {x: boardMousePos.x - (32 * ratio), y: boardMousePos.y - (32 * ratio)} )} style={{ top: `${boardMousePos.y - (32 * ratio)}px`, left: `${boardMousePos.x - (32 * ratio)}px`, width: `${(screen.height) * 0.083}px`, aspectRatio: '1/1', boxShadow: holdingTower.isCollided ? `0px 0px 0px ${holdingTower.tower.range * ratio}px rgba(255,0,0,0.50)` : `0px 0px 0px ${holdingTower.tower.range * ratio}px rgba(128,128,128,0.25)` }} className={`${holdingTower.tower.name} held-tower flex items-center justify-center cursor-pointer rounded-full bg-green-700 border-2 border-emerald-700 absolute`}><h1 className="font-bold text-emerald-200"></h1></div>
                 ) : (<></>)}
 
                 <div id="placed-towers">
                     {placedTowers.map((tower, index) => {
                         return (
-                            <div key={index} onClick={(e) => {selectTower(tower)}} style={{ top: `${tower.pos.y}px`, left: `${tower.pos.x}px`, width: `${(screen.height) * 0.083}px`, aspectRatio: '1/1', boxShadow: selectedTower == tower ? `0px 0px 0px ${selectedTower.range * ratio}px rgba(128,128,128,0.25)` : `0px 0px 3px rgba(0,0,0,0.2)`, border: selectedTower == tower ? `solid 2px #22c55e` : `solid 2px #404040` }} className={`${tower.name} flex items-center justify-center  shadow-sm cursor-pointer rounded-full absolute`}><h1 className="font-bold text-neutral-200"></h1></div>
+                            <div key={index} onClick={(e) => {selectTower(tower)}} style={{ top: `${tower.pos.y}px`, left: `${tower.pos.x}px`, width: `${(screen.height) * 0.083}px`, aspectRatio: '1/1', boxShadow: selectedTower == tower ? `0px 0px 0px ${selectedTower.range * ratio}px rgba(128,128,128,0.25)` : `0px 0px 3px rgba(0,0,0,0.2)`, border: selectedTower == tower ? `solid 2px #22c55e` : `solid 2px #404040` }} className={`${tower.name} flex items-center justify-center  shadow-sm cursor-pointer rounded-full absolute`}><h1 className="font-bold text-emerald-200"></h1></div>
                         )
                     })}
                 </div>
 
                 {towerPaneOpen ? (
-                    <div id="tower-pane" className="absolute bottom-0 left-0 border-t border-neutral-800 w-full h-1/5 bg-neutral-600 flex items-center justify-between sm:p-0 ">
-                        <button className='absolute -top-8 left-1 rounded bg-green-600 border-2 border-neutral-700 text-xs text-white px-2 py-1' onClick={() => setTowerPaneOpen(false)}>Close</button>
+                    <div id="tower-pane" className="absolute bottom-0 left-0 border-t border-emerald-800 w-full h-1/5 bg-emerald-600 flex items-center justify-between sm:p-0 ">
+                        <button className='absolute -top-8 left-1 rounded bg-green-600 border-2 border-emerald-700 text-xs text-emerald-200 px-2 py-1' onClick={() => setTowerPaneOpen(false)}>Close</button>
                         <div className="flex items-center sm:p-0 w-full h-full justify-between sm:gap-0 sm:h-full sm:divide-x sm:divide-black">
                             {towers.map((tower, index) => {
                                 if (tower.cost <= playerStats.money) {
                                     return (
                                         <div key={index} onClick={() => {grabTower(tower); setTowerPaneOpen(false)}} onTouchStart={() => {grabTower(tower); setTowerPaneOpen(false)}}  style={{ boxShadow: `inset 0px 0px 7px 2px rgba(0,0,0,0.1)` }} className={`${tower.name} tower-tab relative w-1/6 h-full flex items-center cursor-pointer justify-center`}>
                                             <div className={`flex flex-col w-full h-full bg-d/25 justify-evenly absolute top-0 left-0 px-1 tower-stats`}>
-                                                <h1 className="text-neutral-200 font-bold sm:text-[10px]">${tower.cost}</h1>
-                                                <h1 className="text-neutral-200 font-bold sm:text-[10px]">{tower.damage} <span className="text-neutral-300 font-medium">dmg</span></h1>
-                                                <h1 className="text-neutral-200 font-bold sm:text-[10px]">{tower.range} <span className="text-neutral-300 font-medium">range</span></h1>
-                                                <h1 className="text-neutral-200 font-bold sm:text-[10px]">{(1 / tower.attackSpeed).toPrecision(2)} <span className="text-neutral-300 font-medium">spd</span></h1>
+                                                <h1 className="text-emerald-200 font-bold sm:text-[10px]">${tower.cost}</h1>
+                                                <h1 className="text-emerald-200 font-bold sm:text-[10px]">{tower.damage} <span className="text-emerald-200 font-medium">dmg</span></h1>
+                                                <h1 className="text-emerald-200 font-bold sm:text-[10px]">{tower.range} <span className="text-emerald-200 font-medium">range</span></h1>
+                                                <h1 className="text-emerald-200 font-bold sm:text-[10px]">{(1 / tower.attackSpeed).toPrecision(2)} <span className="text-emerald-200 font-medium">spd</span></h1>
                                             </div>
                                         </div>
                                     )
@@ -1132,10 +1132,10 @@ const Page = () => {
                                     return (
                                         <div key={index} style={{ boxShadow: `inset 0px 0px 7px 2px rgba(0,0,0,0.1)` }} className={`${tower.name} tower-tab relative w-1/6 h-full flex items-center cursor-not-allowed justify-center opacity-25`}>
                                             <div className={`flex flex-col w-full h-full bg-d/25 justify-evenly absolute top-0 left-0 px-1 tower-stats`}>
-                                                <h1 className="text-neutral-200 font-bold sm:text-[10px]">${tower.cost}</h1>
-                                                <h1 className="text-neutral-200 font-bold sm:text-[10px]">{tower.damage} <span className="text-neutral-300 font-medium">dmg</span></h1>
-                                                <h1 className="text-neutral-200 font-bold sm:text-[10px]">{tower.range} <span className="text-neutral-300 font-medium">range</span></h1>
-                                                <h1 className="text-neutral-200 font-bold sm:text-[10px]">{(1 / tower.attackSpeed).toPrecision(2)} <span className="text-neutral-300 font-medium">spd</span></h1>
+                                                <h1 className="text-emerald-200 font-bold sm:text-[10px]">${tower.cost}</h1>
+                                                <h1 className="text-emerald-200 font-bold sm:text-[10px]">{tower.damage} <span className="text-emerald-200 font-medium">dmg</span></h1>
+                                                <h1 className="text-emerald-200 font-bold sm:text-[10px]">{tower.range} <span className="text-emerald-200 font-medium">range</span></h1>
+                                                <h1 className="text-emerald-200 font-bold sm:text-[10px]">{(1 / tower.attackSpeed).toPrecision(2)} <span className="text-emerald-200 font-medium">spd</span></h1>
                                             </div>
                                         </div>
                                     )
@@ -1144,13 +1144,13 @@ const Page = () => {
                         </div>
                     </div>
                 ) : (
-                    <button className='absolute bottom-1 left-1 rounded bg-green-600 border-2 border-neutral-700 text-xs text-white px-2 py-1' onClick={() => setTowerPaneOpen(true)}>Towers</button>
+                    <button className='absolute bottom-1 left-1 rounded bg-green-600 border-2 border-emerald-700 text-xs text-emerald-200 px-2 py-1' onClick={() => setTowerPaneOpen(true)}>Towers</button>
                 )}
 
                 {selectedTower ? (
                     <div id="tower-pane" className="absolute bottom-0 left-0  w-full h-1/5 bg-black/50 backdrop-blur-sm flex items-center justify-center sm:p-0 ">
-                        <button onClick={() => deleteSelectedTower()} className="bg-blue-700 active:bg-blue-800 font-bold text-neutral-200 rounded text-4xl px-4 py-2 sm:text-xl">Sell Tower</button>
-                        <button onClick={() => setSelectedTower(null)} className="text-neutral-200 text-2xl underline sm:text-sm absolute right-3">close</button>
+                        <button onClick={() => deleteSelectedTower()} className="bg-blue-700 active:bg-blue-800 font-bold text-emerald-200 rounded text-4xl px-4 py-2 sm:text-xl">Sell Tower</button>
+                        <button onClick={() => setSelectedTower(null)} className="text-emerald-200 text-2xl underline sm:text-sm absolute right-3">close</button>
                     </div>
                 ) : (
                     <></>
@@ -1160,20 +1160,20 @@ const Page = () => {
             </div>
             {session && session.user != null ? (
                 <div className="flex w-full max-w-[1024px] sm:mb-3 gap-3 sm:flex-wrap sm:justify-evenly h-1/5 sm:h-2/5 overflow-y-scroll">
-                    <button className="bg-blue-700 p-2 py-1 text-neutral-200 font-bold rounded-sm" onClick={pushTowerValuesToDB}>Submit</button>
+                    <button className="bg-blue-700 p-2 py-1 text-emerald-200 font-bold rounded-sm" onClick={pushTowerValuesToDB}>Submit</button>
                     <div className="w-full flex justify-center sm:flex-wrap gap-3">
                         {towers.map((tower, index) => {
                             return (
                                 <div key={index} className="w-1/6 sm:w-[45%] flex flex-col gap-1">
-                                    <h1 className="font-bold text-sm text-neutral-200 text-center">{tower.name}</h1>
+                                    <h1 className="font-bold text-sm text-emerald-200 text-center">{tower.name}</h1>
                                     <label className="text-neutral-500 text-xs" htmlFor="cost">Cost:</label>
-                                    <input className="w-full bg-neutral-600 rounded-sm text-neutral-200" type="number" name="cost" id="" placeholder={"$" + tower.cost.toString()} value={tower.cost.toString()} onChange={(e) => changeTowerValues(e, tower.name, 'cost')}/>
+                                    <input className="w-full bg-emerald-600 rounded-sm text-emerald-200" type="number" name="cost" id="" placeholder={"$" + tower.cost.toString()} value={tower.cost.toString()} onChange={(e) => changeTowerValues(e, tower.name, 'cost')}/>
                                     <label className="text-neutral-500 text-xs" htmlFor="dmg">Damage:</label>
-                                    <input className="w-full bg-neutral-600 rounded-sm text-neutral-200" type="number" name="dmg" id="" placeholder={"Dmg: " + tower.damage.toString()} value={tower.damage.toString()} onChange={(e) => changeTowerValues(e, tower.name, 'damage')} />
+                                    <input className="w-full bg-emerald-600 rounded-sm text-emerald-200" type="number" name="dmg" id="" placeholder={"Dmg: " + tower.damage.toString()} value={tower.damage.toString()} onChange={(e) => changeTowerValues(e, tower.name, 'damage')} />
                                     <label className="text-neutral-500 text-xs" htmlFor="range">Range:</label>
-                                    <input className="w-full bg-neutral-600 rounded-sm text-neutral-200" type="number" name="range" id="" placeholder={"Range: " + tower.range.toString()} value={tower.range.toString()} onChange={(e) => changeTowerValues(e, tower.name, 'range')} />
+                                    <input className="w-full bg-emerald-600 rounded-sm text-emerald-200" type="number" name="range" id="" placeholder={"Range: " + tower.range.toString()} value={tower.range.toString()} onChange={(e) => changeTowerValues(e, tower.name, 'range')} />
                                     <label className="text-neutral-500 text-xs" htmlFor="Speed">Speed:</label>
-                                    <input className="w-full bg-neutral-600 rounded-sm text-neutral-200" type="number" name="speed" id="" placeholder={"Spd: " + tower.attackSpeed.toString()} value={tower.attackSpeed.toString()} onChange={(e) => changeTowerValues(e, tower.name, 'attackSpeed')} />
+                                    <input className="w-full bg-emerald-600 rounded-sm text-emerald-200" type="number" name="speed" id="" placeholder={"Spd: " + tower.attackSpeed.toString()} value={tower.attackSpeed.toString()} onChange={(e) => changeTowerValues(e, tower.name, 'attackSpeed')} />
                                 </div>
                             )
                         })}

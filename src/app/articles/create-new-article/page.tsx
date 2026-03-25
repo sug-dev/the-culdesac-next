@@ -21,7 +21,6 @@ export default function Page() {
         name: '',
         title: '',
         content: '',
-        tag: '',
         date: ''
     })
     const [readyToSend, setReadyToSend] = useState(false)
@@ -33,7 +32,7 @@ export default function Page() {
         }))
     }
 
-    const setBlogToPost = () => {
+    const setArticleToPost = () => {
         setPostData(prev => ({
             ...prev,
             date: new Date().toUTCString()
@@ -45,7 +44,7 @@ export default function Page() {
         const onSubmit = async () => {
             if (postData.content.trim() !== '' && postData.title.trim() !== '') {
                 try {
-                    const response = await fetch('/api', {
+                    const response = await fetch('/api/articles', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -57,12 +56,11 @@ export default function Page() {
                         name: '',
                         title: '',
                         content: '',
-                        tag: '',
                         date: ''
                     })
-                    window.location.href = '/blog'
+                    window.location.href = '/articles'
                 } catch (error: any) {
-                    console.error("Error creating blog post from frontend: ", error.message)
+                    console.error("Error creating article from frontend: ", error.message)
                 }
             }
         }
@@ -78,8 +76,7 @@ export default function Page() {
             <div className='flex flex-col gap-3 w-full h-full max-w-[800px] p-3'>
                 <input type='text' name="title" placeholder='Title...' className='bg-m rounded p-1.5 px-3 border border-light text-emerald-200' value={postData.title} onChange={handleChange}/>
                 <textarea placeholder='Content...' name="content" className='bg-m rounded p-1.5 px-3 resize-none border border-light text-emerald-200 h-96 sm:h-64' value={postData.content} onChange={handleChange}/>
-                <input type='text' name="tag" placeholder='Tag...' className='bg-m rounded p-1.5 px-3 border border-light text-emerald-200' value={postData.tag} onChange={handleChange}/>
-                <button className='w-full mx-auto p-1 bg-bl rounded text-emerald-200 font-bold' onClick={setBlogToPost}>Submit</button>
+                <button className='w-full mx-auto p-1 bg-bl rounded text-emerald-200 font-bold' onClick={setArticleToPost}>Submit</button>
             </div>
         </div>
     ) : <h1>Not logged in...</h1>

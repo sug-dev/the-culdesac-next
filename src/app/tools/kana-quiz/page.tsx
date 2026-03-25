@@ -322,41 +322,53 @@ const Page = () => {
     }
 
     return (
-        <div className='flex flex-col items-center sm:w-full sm:pt-14 bg-m flex-1 sm:border-b border-light'>
+        <div className='flex flex-col items-center sm:w-full sm:pt-14 bg-d flex-1 sm:border-b border-light'>
             {!workingDeck ? (
                 <div className="w-full p-3 flex flex-col gap-3 items-center">
-                    <button className="text-white text-xl font-bold p-3 rounded-lg bg-bl w-full" onClick={() => {start_quiz(hiragana, 'Hiragana')}}>Hiragana Quiz</button>
-                    <button className="text-white text-xl font-bold p-3 rounded-lg bg-bl w-full" onClick={() => {start_quiz(katakana, 'Katakana')}}>Katakana Quiz</button>
+                    <div className="text-emerald-200 text-xl shadow cursor-pointer font-bold px-2 py-[2px] rounded bg-l w-full" onClick={() => {start_quiz(hiragana, 'Hiragana')}}>
+                        <h2 className="bg-m rounded p-3 text-center">Hiragana Quiz</h2>
+                    </div>
+                    <div className="text-emerald-200 text-xl shadow cursor-pointer font-bold px-2 py-[2px] rounded bg-l w-full" onClick={() => {start_quiz(katakana, 'Katakana')}}>
+                        <h2 className="bg-m rounded p-3 text-center">Katakana Quiz</h2>
+                    </div>
                 </div>   
             ) : (
                 <>
                 <div className="w-full bg-d flex items-center justify-between border-b border-light">
-                    <h1 className="text-white font-bold text-2xl p-3">{quiz}</h1>
+                    <h1 className="text-emerald-200 font-bold text-2xl p-3">{quiz}</h1>
                     <button className="text-neutral-500 underline p-3 text-xs font-light" onClick={() => {reset()}}>Back</button>
                 </div>
                 <div className="w-full p-9 flex flex-col gap-3 sm:justify-start flex-1">
-                    <div className="w-full max-w-[300px] rounded-xl bg-bl flex flex-col items-center p-3 gap-3 relative">
-                        <div className="w-full h-6 rounded-full bg-neutral-200 relative overflow-hidden">
-                            <div className="absolute top-1 left-1 rounded-full h-4 bg-emerald-500 transition-all duration-300" style={{ width: `calc(1rem + ${progress * (100 - (1 / 16 * 100))}%)` }}>
+                    <div className={`w-full max-w-[300px] rounded-xl ${chosen ? `rounded-br-none` : ''} bg-m border border-light flex flex-col items-center p-3 gap-3 relative`}>
+                        <div className="w-full h-6 rounded-full bg-l relative overflow-hidden">
+                            <div className="absolute top-1 left-1 rounded-full h-4 bg-green-600 transition-all duration-300" style={{ width: `calc(1rem + ${progress * (100 - (1 / 16 * 100))}%)` }}>
 
                             </div>
                         </div>
-                        <div className="bg-neutral-200 rounded-lg flex items-center justify-center w-full aspect-square">
-                            <h1 className="text-8xl text-black font-bold">{workingDeck.current.kana}</h1>
+                        <div className="bg-l rounded-lg flex items-center justify-center w-full aspect-square">
+                            <h1 className="text-8xl text-emerald-200 font-bold">{workingDeck.current.kana}</h1>
                         </div>
                         <div className="flex items-center justify-between w-full gap-3">
                             {workingDeck.answers.map((a, i) => {
                                 return (
                                     chosen ? (
-                                        <button key={i} className={`text-black font-bold p-3 rounded-lg border-2 border-neutral-200 flex-1 ${a === workingDeck.current.romaji ? `bg-emerald-600 text-white` : chosen === a && workingDeck.current.romaji !== a ? `bg-red-600 text-white` : `bg-neutral-200`}`}>{a}</button>
+                                        <button key={i} className={`text-emerald-200 font-bold p-3 rounded-lg flex-1 ${a === workingDeck.current.romaji ? `bg-emerald-600 text-emerald-200` : chosen === a && workingDeck.current.romaji !== a ? `bg-red-600 text-emerald-200` : `bg-l`}`}>{a}</button>
                                     ) : (
-                                        <button key={i} onClick={() => {setChosen(a)}} className="text-black font-bold p-3 rounded-lg bg-neutral-200 border-2 border-neutral-200 flex-1">{a}</button>
+                                        <button key={i} onClick={() => {setChosen(a)}} className="text-emerald-200 font-bold p-3 rounded-lg bg-l flex-1">{a}</button>
                                     )
                                 )
                             })}
                         </div>
                         {chosen ? (
-                            <button className="absolute bottom-[-42px] right-0 bg-bl text-white font-bold p-3 rounded-b-xl pt-4" onClick={() => check_answer(chosen)}>Next</button>
+                            <>
+                                <button className="absolute bottom-[-49px] right-[-1px] bg-m text-emerald-200 font-bold p-3 px-6 rounded-b-xl border border-light border-t-0" onClick={() => check_answer(chosen)}>Next</button>
+                                <div className="absolute bg-d border-t border-r border-light w-6 h-6 bottom-[-24px] right-[84.5px]">
+                                    <div className="absolute top-[-1px] right-[-1px] w-3 h-3 bg-m"></div>
+                                    <div className="absolute top-[-1px] right-[-1px] border border-light bg-d rounded-full w-full h-full z-10"></div>
+                                    <div className="absolute top-0 left-0 w-1/2 h-full bg-d z-20"></div>
+                                    <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-d z-30"></div>
+                                </div>
+                            </>
                         ) : (
                             <></>
                         )}

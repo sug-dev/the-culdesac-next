@@ -155,9 +155,9 @@ const Page = () => {
                 </div>
                 <div className='w-1/2 flex-1 flex flex-col sm:w-full sm:h-1/4'>
                     <div className='h-1/3 bg-gray-300 sm:hidden'></div>
-                    <div className='flex flex-col h-2/3 overflow-y-scroll bg-gray-200 bg-d divide-y divide-neutral-700 divide-gray-300 sm:h-full'>
+                    <div className='flex flex-col h-2/3 overflow-y-scroll bg-gray-200 bg-d divide-y divide-emerald-700 divide-gray-300 sm:h-full'>
                         {Object.entries(upgrades).map((upgrade, index) => (
-                            <div key={index} onClick={() => purchaseUpgrade(upgrade[1].name)} className={cookieTotal >= upgrade[1].cost ? 'cursor-pointer flex justify-between p-3 hover:bg-gray-300 hover:bg-neutral-700 sm:p-1 sm:px-2' : 'cursor-pointer flex opacity-50 justify-between p-3 sm:p-1 sm:px-2'}>
+                            <div key={index} onClick={() => purchaseUpgrade(upgrade[1].name)} className={cookieTotal >= upgrade[1].cost ? 'cursor-pointer flex justify-between p-3 hover:bg-gray-300 hover:bg-emerald-700 sm:p-1 sm:px-2' : 'cursor-pointer flex opacity-50 justify-between p-3 sm:p-1 sm:px-2'}>
                                 <div className='flex items-end gap-6 sm:gap-0'>
                                     <div>
                                         <h2 className='text-left text-gray-400 text-neutral-500 font-light text-xs'>Amount</h2>

@@ -51,15 +51,12 @@ export default function Nav() {
     const pathname = usePathname()
     
     const [navLinks, setNavLinks] = useState<NavLinks>({
+        '/articles': {selected: false, text: "Articles", icon: articlesIcon},
         '/chat': {selected: false, text: "Chat", icon: chatIcon},
         '/blog': {selected: false, text: "Blog", icon: blogIcon},
-        '/flashcards': {selected: false, text: "Flashcards", icon: cardIcon},
-        // '/articles': {selected: false, text: "Articles", icon: articlesIcon},
-        // '/games': {selected: false, text: "Games", icon: gamesIcon}
     })
     const [navToggled, setNavToggled] = useState(false)
     const [loginUrl, setLoginUrl] = useState(`/login?ref=${pathname}`)
-    const [num, setNum] = useState(1)
 
     const [gamesToggled, setGamesToggled] = useState(false)
     const [toolsToggled, setToolsToggled] = useState(false)
@@ -89,34 +86,30 @@ export default function Nav() {
         })
     }
 
-    useEffect(() => {   
-        // console.log(pathname.split('/')[1])
-    }, [])
-
     const Header = () => {
         if (pathname.split('/')[1] === 'flashcards') {
             return (
                 <>
-                    <h1 className='text-white font-black text-3xl flex gap-2 items-center'><div className='w-[10px] h-[10px] rounded-full bg-white'></div>FLASHCARDS</h1>
+                    <h1 className='text-emerald-200 font-black text-3xl flex gap-2 items-center'><div className='w-[10px] h-[10px] rounded-full bg-white'></div>FLASHCARDS</h1>
                 </>
             )
         } else if (pathname.split('/')[1] === 'chat') {
             return (
                 <>
-                    <h1 className='text-white font-black text-3xl flex gap-2 items-center'><div className='w-[10px] h-[10px] rounded-full bg-white'></div>CHAT</h1>
+                    <h1 className='text-emerald-200 font-black text-3xl flex gap-2 items-center'><div className='w-[10px] h-[10px] rounded-full bg-white'></div>CHAT</h1>
                 </>
             )
         } else if (pathname.split('/')[1] === 'blog') {
             return (
                 <>
-                    <h1 className='text-white font-black text-3xl flex gap-2 items-center'><div className='w-[10px] h-[10px] rounded-full bg-white'></div>BLOG</h1>
+                    <h1 className='text-emerald-200 font-black text-3xl flex gap-2 items-center'><div className='w-[10px] h-[10px] rounded-full bg-white'></div>BLOG</h1>
                 </>
             )
         } else {
             return (
                 <>
-                    {/* <h1 className='text-lg font-light text-white'>the</h1> */}
-                    <h1 className='text-white font-black text-3xl flex gap-1 items-center'><span className='text-lg font-light text-white mr-1 mt-auto'>the</span>CUL<div className='w-[10px] h-[10px] rounded-full bg-white'></div>DE<div className='w-[10px] h-[10px] rounded-full bg-white'></div>SAC</h1>
+                    {/* <h1 className='text-lg font-light text-emerald-200'>the</h1> */}
+                    <h1 className='text-emerald-200 font-black text-3xl flex gap-1 items-center'><span className='text-lg font-light text-emerald-200 mr-1 mt-auto'>the</span>CUL<div className='w-[10px] h-[10px] rounded-full bg-white'></div>DE<div className='w-[10px] h-[10px] rounded-full bg-white'></div>SAC</h1>
                 </>
             )
         } 
@@ -125,6 +118,8 @@ export default function Nav() {
 
     return (
         <nav className={navToggled ? toggledNavStyle : hiddenNavStyle}>
+
+            {/* NAV HEADER */}
             <div className={navToggled ? 'pb-2 w-full flex items-center sm:justify-between p-3 sm:sm:border-b border-light' : 'pb-2 w-full flex items-center sm:justify-between sm:sm:border-b border-light p-3'}>
                 <Link href="/" onClick={() => handleClick('/')} className='flex flex-col sm:flex-row sm:gap-2 sm:items-end px-1'>
                     <Header />
@@ -135,6 +130,8 @@ export default function Nav() {
                     <div className={navToggled ? 'bg-white h-[3px] rounded-lg w-full -rotate-45 -translate-y-3 transition-all duration-300' : 'bg-white h-[3px] rounded-lg w-full rotate-0 transition-all duration-300'}></div>
                 </div>
             </div>
+
+            {/* GAMES / TOOLS NAV */}
             <div className={navToggled ? navLinksShownStyle : navLinksHiddenStyle}>
 
                 {Object.keys(navLinks).map((key) => {
@@ -149,6 +146,7 @@ export default function Nav() {
                     )
                 })}
 
+                {/* GAMES */}
                 <div className={'flex flex-col items-center cursor-pointer relative hidden'}>
                     <div className='flex w-full items-center justify-between' onClick={() => {setGamesToggled(!gamesToggled)}}>
                         <div className='flex items-center'>
@@ -162,18 +160,15 @@ export default function Nav() {
                     {gamesToggled ? (
                         <div className='flex flex-col w-full items-end gap-6 sm:gap-4 p-2 pt-10 sm:pt-6'>
                             <Link href="/games/cookie-clicker" className='text-neutral-400 font-light hover:border-b-white hover:border-light' onClick={navToggle}>Cookie Clicker</Link>
-                            <Link href="/games/tic-tac-toe" className='text-neutral-400 font-light hover:border-b-white hover:border-light' onClick={navToggle}>Tic-Tac-Toe</Link>
-                            <Link href="/games/whiteboard" className='text-neutral-400 font-light hover:border-b-white hover:border-light' onClick={navToggle}>Whiteboard</Link>
                             <Link href="/games/produce-hero" className='text-neutral-400 font-light hover:border-b-white hover:border-light' onClick={navToggle}>Produce Hero</Link>
                             <Link href="/games/culdesac-defense" className='text-neutral-400 font-light hover:border-b-white hover:border-light' onClick={navToggle}>The Cul-De-Sac Defense</Link>
-                            {/* <Link href="/games/luis-invaders" className='text-neutral-400 font-light hover:border-b-white hover:border-light' onClick={navToggle}>Luis Invaders</Link> */}
-                            {/* <Link href="/games/battle-monsters" className='text-neutral-400 font-light hover:border-b-white hover:border-light' onClick={navToggle}>Battle Monsters</Link> */}
                         </div>
                     ) : (
                         <></>
                     )}
                 </div>
 
+                {/* TOOLS */}
                 <div className={'flex flex-col items-center cursor-pointer relative'}>
                     <div className='flex w-full items-center gap-3' onClick={() => {setToolsToggled(!toolsToggled)}}>
                         <div className='flex items-center'>
@@ -187,6 +182,8 @@ export default function Nav() {
                     </div>
                     {toolsToggled ? (
                         <div className='flex flex-col w-full items-end gap-6 sm:gap-4 p-2 pt-10 sm:pt-6'>
+                            <Link href="/tools/flashcards" className='text-neutral-400 font-light hover:border-b-white hover:border-light' onClick={navToggle}>Flashcards</Link>
+                            <Link href="/tools/whiteboard" className='text-neutral-400 font-light hover:border-b-white hover:border-light' onClick={navToggle}>Whiteboard</Link>
                             <Link href="/tools/pointillizer" className='text-neutral-400 font-light hover:border-b-white hover:border-light' onClick={navToggle}>Image Pointillizer</Link>
                             <Link href="/tools/kana-quiz" className='text-neutral-400 font-light hover:border-b-white hover:border-light' onClick={navToggle}>Kana Quiz</Link>
                         </div>
@@ -197,10 +194,10 @@ export default function Nav() {
                     
             </div>
 
-
+            {/* LOGIN / LOGOUT */}
             <div className={navToggled ? 'w-full flex-1 flex items-end p-3' : 'w-full flex-1 flex items-end p-3 sm:hidden'}>
                 {status == 'authenticated' ? (
-                    <div className='flex items-center cursor-pointer' onClick={() => {signOut({ callbackUrl: '/', redirect:true }); navToggle()}}>
+                    <div className='flex items-center cursor-pointer' onClick={() => {signOut({ callbackUrl: 'https://theculdesac.club', redirect:true }); navToggle()}}>
                         <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" className='mr-2'>
                             <path d={profileIcon1} stroke="white" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
                             <path d={profileIcon2} stroke="white" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>

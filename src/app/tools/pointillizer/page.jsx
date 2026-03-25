@@ -137,28 +137,28 @@ const Page = () => {
         <div ref={body_ref} className='flex flex-col items-center sm:w-full sm:pt-14 bg-m flex-1 sm:border-b border-light'>
             <a href="#" className='hidden' ref={save_link_ref}></a>
             <div id="ui_container" className='flex flex-col items-center w-full max-w-[100vw]'>
-                <input className='bg-d p-3 w-full text-white text-xs border-b border-light' type="file" name="image" id="image" onChange={(e) => {upload_image(e.target.files[0])}}/>
+                <input className='bg-d p-3 w-full text-emerald-200 text-xs border-b border-light' type="file" name="image" id="image" onChange={(e) => {upload_image(e.target.files[0])}}/>
 
                 {loaded ? (
                     <div id="ui_subcontainer" className='flex justify-between bg-d border-b border-light w-full'>
                         <div className='flex items-center justify-between w-[85%] px-3 py-2'>
                             <div className="label_holder w-[30%]">
-                                <label className='text-white font-bold text-xs' htmlFor="density">Density</label>
+                                <label className='text-emerald-200 font-bold text-xs' htmlFor="density">Density</label>
                                 <input type="range" id="density" min="0.2" max="3" step="0.1" value={params.density_strength} onInput={(e) => {handle_params('density_strength', e.target.value)}}/>
                             </div>
 
                             <div className="label_holder w-[30%]">
-                                <label className='text-white font-bold text-xs' htmlFor="gamme">Gamma</label>
+                                <label className='text-emerald-200 font-bold text-xs' htmlFor="gamme">Gamma</label>
                                 <input type="range" id="gamma" min="0.2" max="3" step="0.1" value={params.brightness_gamma} onInput={(e) => {handle_params('brightness_gamma', e.target.value)}}/>
                             </div>
 
                             <div className="label_holder w-[30%]">
-                                <label className='text-white font-bold text-xs' htmlFor="dots">Dots</label>
+                                <label className='text-emerald-200 font-bold text-xs' htmlFor="dots">Dots</label>
                                 <input type="range" id="dots" min="5000" max="320000" step="1000" value={params.dots} onInput={(e) => {handle_params('dots', e.target.value)}}/>
                             </div>
                         </div>
 
-                        <button className='bg-bl border-l border-light text-white text-xs font-bold cursor-pointer w-[15%]' id="save_btn" onClick={() => {save_image()}}>Save</button>
+                        <button className='bg-bl border-l border-light text-emerald-200 text-xs font-bold cursor-pointer w-[15%]' id="save_btn" onClick={() => {save_image()}}>Save</button>
                     </div>
                 ) : (
                     <></>

@@ -43,7 +43,7 @@ function RegisterPage() {
         <div className='bg-gray-100 bg-d flex-1 relative flex flex-col items-center justify-center'>
             <form onSubmit={handleSubmit} action="POST" className='w-full flex flex-col gap-3 items-center'>
                 <input
-                    className='w-2/3 max-w-96 p-1.5 px-3 rounded-lg bg-neutral-700 text-neutral-100'
+                    className='w-2/3 max-w-96 p-1.5 px-3 rounded-lg bg-emerald-700 text-emerald-200'
                     type="text"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
@@ -51,14 +51,14 @@ function RegisterPage() {
                     required
                 />
                 <input
-                    className='w-2/3 max-w-96 p-1.5 px-3 rounded-lg bg-neutral-700 text-neutral-100'
+                    className='w-2/3 max-w-96 p-1.5 px-3 rounded-lg bg-emerald-700 text-emerald-200'
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Password"
                     required
                 />
-                <button type="submit" className='bg-blue-500 hover:bg-blue-600 text-white rounded-lg p-1.5 px-3 w-2/3 max-w-96'>Register</button>
+                <button type="submit" className='bg-blue-500 hover:bg-blue-600 text-emerald-200 rounded-lg p-1.5 px-3 w-2/3 max-w-96'>Register</button>
                 <button className='bg-transparent text-blue-500 rounded-lg p-1.5 px-3 w-2/3 max-w-96' onClick={() => {window.location.href = '/login'}}>Login</button>
             </form>
         </div>

@@ -357,9 +357,9 @@ const Page = () => {
             {gameOver ? (
                 <>
                     <div className='absolute w-full h-full flex flex-col justify-center items-center z-100 bg-black/50'>
-                        <h1 className='text-4xl text-white font-bold mb-4'>GAME OVER</h1>
-                        <h1 className='text-4xl sm:text-3xl text-center text-white font-bold mb-4'>YOU SCORED <br></br><span className='text-red-500'>{score}</span><br></br> POINTS</h1>
-                        <button className='text-4xl sm:text-3xl text-white font-bold bg-black p-4 py-2 rounded-lg' onClick={reset}>PLAY AGAIN</button>
+                        <h1 className='text-4xl text-emerald-200 font-bold mb-4'>GAME OVER</h1>
+                        <h1 className='text-4xl sm:text-3xl text-center text-emerald-200 font-bold mb-4'>YOU SCORED <br></br><span className='text-red-500'>{score}</span><br></br> POINTS</h1>
+                        <button className='text-4xl sm:text-3xl text-emerald-200 font-bold bg-black p-4 py-2 rounded-lg' onClick={reset}>PLAY AGAIN</button>
                     </div>
                 </>
             ) : (
@@ -368,15 +368,15 @@ const Page = () => {
             {!play && !gameOver ? (
                 <>
                     <div className='absolute w-full h-full flex flex-col justify-center items-center z-100 bg-black/50'>
-                        <h1 className='text-4xl text-white font-bold mb-8'>Produce Hero TM</h1>
-                        <button className='text-4xl text-white font-bold bg-black p-4 rounded-lg' onClick={() => {setPlay(true); }}>Play</button>
+                        <h1 className='text-4xl text-emerald-200 font-bold mb-8'>Produce Hero TM</h1>
+                        <button className='text-4xl text-emerald-200 font-bold bg-black p-4 rounded-lg' onClick={() => {setPlay(true); }}>Play</button>
                     </div>
                 </>
             ) : (
                 <>
                     <div className='absolute flex items-center justify-between top-12 left-0 w-full px-3 py-2'>
-                        <h1 className='text-2xl text-white font-bold'>HP: {player.hp}</h1>
-                        <h1 className='text-2xl text-white font-bold'>Score: {score}</h1>
+                        <h1 className='text-2xl text-emerald-200 font-bold'>HP: {player.hp}</h1>
+                        <h1 className='text-2xl text-emerald-200 font-bold'>Score: {score}</h1>
                     </div>
                     <div id='player' ref={playerRef} className='flex items-center justify-center w-[200px] h-[400px] sm:w-[100px] sm:h-[200px] player' style={{ position: 'absolute', bottom: `0px`, left: `${player.pos.x - offset}px` }}>
                         <div ref={colliderRef} style={{ width: `${colliderSize.width}px`, height: `${colliderSize.height}px` }} className=''></div>

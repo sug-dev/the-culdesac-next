@@ -17,7 +17,7 @@ export default function Page() {
     const [isSelect, setIsSelect] = useState(false)
     const [color, setColor] = useState('#000000')
     const [tempColor, setTempColor] = useState('#000000')
-    const [width, setWidth] = useState(5)
+    const [width, setWidth] = useState(15)
     const [cursor, setCursor] = useState({
         x: 0,
         y: 0
@@ -32,7 +32,7 @@ export default function Page() {
             if (context) {
                 context.fillStyle = 'white'
                 context.fillRect(0, 0, canvas.width, canvas.height)
-                context.lineWidth = 5
+                context.lineWidth = 15
                 context.lineCap = 'round'
                 context.lineJoin = 'round'
                 context.strokeStyle = color
@@ -120,7 +120,7 @@ export default function Page() {
     useEffect(() => {
         const moveCursor = (e: any) => {
             if (cursorWidth) {
-                setCursor({ x: ((e.clientX - 256)), y: (e.clientY) })
+                setCursor({ x: ((e.clientX - 287)), y: (e.clientY) })
                 // console.log(e)
             }
         }
@@ -236,11 +236,11 @@ export default function Page() {
     }
 
     return (
-        <div className='flex-1 chatBg h-full relative flex flex-col items-center justify-center overflow-hidden'>
-            <div className='absolute top-3 sm:top-16 left-3 flex items-center gap-3 w-full'>
+        <div className='flex-1 bg-m h-full relative flex flex-col overflow-hidden sm:pt-[57px]'>
+            <div className='flex items-center gap-3 w-full bg-d p-3 border-b border-light'>
                 <button className={isEraser || isSelect ? 'text-2xl opacity-25' : 'text-2xl opacity-100'} onClick={() => {setColor(tempColor); setIsEraser(false); setIsDraw(true); setIsSelect(false)}}>🖊️</button>
                 <button className={isEraser ? 'text-2xl opacity-100' : 'text-2xl opacity-25'} onClick={() => {setEraser(); setIsSelect(false); setIsEraser(true)}}>🧼</button>
-                <button className={isSelect ? 'bg-white text-2xl opacity-100 border border-2 border-dotted border-black w-[25px] h-[25px]' : 'bg-white text-2xl opacity-25 border border-2 border-dotted border-black w-[25px] h-[25px]'} onClick={() => {setIsSelect(true); setIsEraser(false); setIsDraw(false)}}></button>
+                {/* <button className={isSelect ? 'bg-white text-2xl opacity-100 border border-2 border-dotted border-black w-[25px] h-[25px]' : 'bg-white text-2xl opacity-25 border border-2 border-dotted border-black w-[25px] h-[25px]'} onClick={() => {setIsSelect(true); setIsEraser(false); setIsDraw(false)}}></button> */}
                 <input
                     className='ml-1'
                     type="color"
@@ -249,22 +249,24 @@ export default function Page() {
 
                     style={{ width: '25px', height: '25px', border: 'none', padding: '0' }}
                 />
-                <input type="range" min={2} max={250} step={2} onChange={(e) => changeWidth(e)} />
+                <input type="range" min={2} max={250} step={2} defaultValue={15} onChange={(e) => changeWidth(e)} />
                 <button onClick={saveCanvasAsImage} className='text-2xl ml-1'>💾</button>
             </div>
-            <canvas
-            ref={canvasRef}
-            onMouseDown={startDrawing}
-            onMouseMove={draw}
-            onMouseUp={stopDrawing}
-            onMouseLeave={stopDrawing}
-            onTouchStart={startDrawing}
-            onTouchMove={draw}
-            onTouchEnd={stopDrawing}
-            width={1000}
-            height={1000}
-            style={{ backgroundColor: 'white', cursor: 'crosshair', border: 'none', margin: '6em 0 0 0', borderRadius: '10px' }}
-            ></canvas>
+            <div>
+                <canvas
+                    ref={canvasRef}
+                    onMouseDown={startDrawing}
+                    onMouseMove={draw}
+                    onMouseUp={stopDrawing}
+                    onMouseLeave={stopDrawing}
+                    onTouchStart={startDrawing}
+                    onTouchMove={draw}
+                    onTouchEnd={stopDrawing}
+                    width={500}
+                    height={500}
+                    style={{ backgroundColor: 'white', cursor: 'crosshair', border: 'none'}}
+                ></canvas>
+            </div>
             <div ref={cursorWidth} className='absolute rounded-full pointer-events-none' style={{ width: `${width}px`, height: `${width}px`, top: `${cursor.y - (width / 2)}px`, left: `${cursor.x - (width / 2)}px`, borderWidth: '1px', borderStyle: 'solid', borderColor: isDraw || isEraser ? '#ddd' : 'transparent' }}></div>
         </div>
     )
