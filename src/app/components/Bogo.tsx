@@ -1,27 +1,17 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
+import io, { Socket } from 'socket.io-client'
 
 export const Bogo = () => {
     const [arr, setArr] = useState<number[]>([])
     const [attempts, setAttempts] = useState(0)
 
-    useEffect(() => {
-        const es = new EventSource("/api/bogo")
-
-        es.onmessage = (event) => {
-            const data = JSON.parse(event.data)
-            setArr(data.arr)
-            setAttempts(data.attempts)
-        }
-
-        return () => es.close()
-    }, [])
+    const socket = useRef<Socket | null>(null)
 
     return (
         <div className="border border-light rounded flex flex-col bg-m overflow-hidden aspect-square shadow">
             <h1 className="text-emerald-200 font-bold text-sm p-3 border-b border-light">Bogo Sort Live</h1>
-            {/* <p>Attempts: {attempts}</p> */}
 
             <div className="flex h-full items-end gap-[2px]">
                 {arr.map((value, i) => (

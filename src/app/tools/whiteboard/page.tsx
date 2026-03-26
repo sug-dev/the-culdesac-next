@@ -7,7 +7,7 @@ let lastPos = { x: 0, y: 0 }
 
 export default function Page() {
 
-    const [socketId, setSocketId] = useState(undefined)
+    const [socketId, setSocketId] = useState<string | undefined>(undefined)
 
     const canvasRef = useRef<HTMLCanvasElement | null>(null)
     const cursorWidth = useRef<HTMLDivElement | null>(null)
@@ -43,34 +43,18 @@ export default function Page() {
 
         socket.current.on('connect', () => {
             console.log('Client Connected to WebSocket')
+            setSocketId(socket.current?.id)
         })
 
         socket.current.on('new-user', (id: any, board: any) => {
-            socket.current?.emit('getWhiteboard', (board: any) => {
-                
-            })
-            // // console.log(socketId)
-            // if (socketId) {
-            //     console.log("New user")
-            //     const canvas = canvasRef.current
-            //     if (canvas) {
-            //         const dataURL = canvas.toDataURL('image/png')
-            //         socket.current?.emit('sendWholeCanvas', dataURL)
-            //         console.log("ASS")
-            //     }
-            // }
-            // if (socketId === undefined || socketId === null) {
-            //     console.log("ASSSSS")
-            //     setSocketId(id.id)
-            // }
+            socket.current?.emit('getWhiteboard', (board: any) => {})
         })
 
         socket.current.on('getWhiteboard', (board: any) => {
-            console.log("Getting board")
             const canvas = canvasRef.current
             if (canvas) {
                 const context = canvas.getContext('2d')
-                if (context) {
+                if (context && board) {
                     const img = new Image()
                     img.onload = () => {
                         context.drawImage(img, 0, 0)
@@ -79,20 +63,6 @@ export default function Page() {
                 }
             }
         })
-
-        // socket.current.on('sendWholeCanvas', (data: any) => {
-        //     const canvas = canvasRef.current
-        //     if (canvas) {
-        //         const context = canvas.getContext('2d')
-        //         if (context) {
-        //             const img = new Image()
-        //             img.onload = () => {
-        //                 context.drawImage(img, 0, 0)
-        //             }
-        //             img.src = data
-        //         }
-        //     }
-        // })
 
         socket.current.on('canvasData', (data: any) => {
             const canvas = canvasRef.current
@@ -121,7 +91,6 @@ export default function Page() {
         const moveCursor = (e: any) => {
             if (cursorWidth) {
                 setCursor({ x: ((e.clientX - 287)), y: (e.clientY) })
-                // console.log(e)
             }
         }
         window.addEventListener('mousemove', (e: any) => {
@@ -181,7 +150,7 @@ export default function Page() {
         const canvas = canvasRef.current
         if (canvas) {
             const dataURL = canvas.toDataURL('image/png')
-            socket.current?.emit('sendWholeCanvas', dataURL)
+            // socket.current?.emit('sendWholeCanvas', dataURL)
         }
     }
     

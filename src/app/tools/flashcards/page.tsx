@@ -436,7 +436,7 @@ const Flashcards = () => {
                                 {categories.map((category, index) => {
                                     if (category.type === 'category') {
                                         return (
-                                            <button key={index} className={`text-emerald-200 font-light text-sm px-3 py-3 cursor-pointer ${openCategory?.name === category.name ? "border-b-4 border-emerald-200" : "border-b-4 border-transparent" }`} onClick={() => {setOpenCategory(category)}}>{category.name}</button>
+                                            <button key={index} className={`text-emerald-200 font-light text-sm px-3 py-3 cursor-pointer ${openCategory?.name === category.name ? "border-b-4 border-neutral-200" : "border-b-4 border-transparent" }`} onClick={() => {setOpenCategory(category)}}>{category.name}</button>
                                         )
                                     }
                                 })}
