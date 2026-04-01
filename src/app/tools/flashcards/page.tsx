@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Collapsible } from "../../components/Collapsible"
 import { useSession } from 'next-auth/react'
 import { v4 } from 'uuid'
@@ -40,6 +40,8 @@ const Flashcards = () => {
     const [openFolder, setOpenFolder] = useState<Collection | undefined>(undefined)
 
     const [openCard, setOpenCard] = useState<Flashcard | undefined>(undefined)
+
+    const shuffledRef = useRef<Flashcard[] | null>(null)
 
     const [revealCard, setRevealCard] = useState(false)
 
@@ -331,7 +333,35 @@ const Flashcards = () => {
 
         setOpenCard(undefined)
         setRevealCard(false)
+
+        get_new_card()
+
         setLoading(false)
+    }
+
+    function start_shuffle(cds: Flashcard[]) {
+        shuffledRef.current = cds
+
+        const randomIndex = Math.floor(Math.random() * cds.length)
+        const cd = cds[randomIndex]
+
+        setOpenCard(cd)
+    }
+
+    function get_new_card() {
+        if (shuffledRef.current && openCard && shuffledRef.current.length > 1) {
+            const idx = shuffledRef.current.indexOf(openCard)
+            shuffledRef.current.splice(idx, 1)
+
+            const randomIndex = Math.floor(Math.random() * shuffledRef.current.length)
+            const cd = shuffledRef.current[randomIndex]
+
+            setOpenCard(cd)
+        }
+
+        if (shuffledRef.current && shuffledRef.current.length <= 1) {
+            shuffledRef.current = null
+        }
     }
 
     return (
@@ -354,6 +384,15 @@ const Flashcards = () => {
                             </div>
                         </div>
                         <div className="h-full bg-d grid grid-cols-2 auto-rows-min p-3 overflow-y-scroll gap-3 sm:border-b border-light">
+                            {flashcards.filter(c => c.subfolderId === openFolder._id).length > 1 ? (
+                                <div className="bg-bl w-full rounded shadow p-[2px] px-2 cursor-pointer col-span-2" onClick={() => {start_shuffle(flashcards.filter(c => c.subfolderId === openFolder._id))}}>
+                                    <div className="text-emerald-200 font-light text-md bg-m rounded px-3 py-1.5">
+                                        <h2 className="font-bold text-center">Shuffle Cards</h2>    
+                                    </div>
+                                </div>
+                            ) : (
+                                <></>
+                            )}
                             {flashcards.map((card, index) => {
                                 let front_split = card.front.split(' ')
 
@@ -392,7 +431,7 @@ const Flashcards = () => {
                             <h1 className="text-emerald-200 font-bold text-2xl">{openCard.front.split(' ')[0]}</h1>
                         </div>
                         <div className="flex absolute top-0 right-0 px-3 pt-5">
-                            <p className="text-neutral-500 underline text-xs cursor-pointer" onClick={() => {setOpenCard(undefined); setRevealCard(false)}}>Back</p>
+                            <p className="text-neutral-500 underline text-xs cursor-pointer" onClick={() => {setOpenCard(undefined); setRevealCard(false); shuffledRef.current = null}}>Back</p>
                         </div>
                     </div>
                     <div className="flex-1 p-9 bg-d sm:border-b border-light">
@@ -409,7 +448,7 @@ const Flashcards = () => {
                                 </div>
                                 <div className="flex flex-col gap-3 h-full w-1/2 items-center justify-center relative p-3">
                                     <div className="flex items-center justify-center flex-1 aspect-square bg-l w-full rounded-lg">
-                                        <h1 className="text-4xl font-bold text-emerald-200">{openCard.back}</h1>
+                                        <h1 className="text-4xl font-bold text-emerald-200 text-center">{openCard.back}</h1>
                                     </div>
                                     <div className="flex gap-3 w-full">
                                         <button className="w-1/2 rounded-lg border border-light font-bold w-full py-1 text-emerald-200" onClick={() => {update_card(openCard, 'fail')}}>Fail</button>
@@ -451,6 +490,15 @@ const Flashcards = () => {
                         </div>
                     </div>
                     <div className="h-full bg-d flex flex-col items-center p-3 overflow-y-scroll gap-3 sm:border-b border-light">
+                        {categories.length > 0 ? (
+                            <div className="bg-bl w-full rounded shadow p-[2px] px-2 cursor-pointer" onClick={() => {start_shuffle(flashcards)}}>
+                                <div className="text-emerald-200 font-light text-md bg-m rounded px-3 py-1.5">
+                                    <h2 className="font-bold text-center">Shuffle All Cards</h2>    
+                                </div>
+                            </div>
+                        ) : (
+                            <></>
+                        )}
                         {categories.map((category, index) => {
                             if (category.type === 'folder' && category.parentId === openCategory?._id) {
                                 return (
