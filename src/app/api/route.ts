@@ -28,7 +28,13 @@ export async function GET(req: NextRequest) {
         allPosts = await db.collection('newblogentries').find({}).sort({ _id: -1 }).toArray()
     }
 
-    return NextResponse.json({ posts: allPosts })
+    return NextResponse.json({ posts: allPosts }, {
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET",
+            "Access-Control-Allow-Headers": "Content-Type",
+        }
+    })
 }
 
 export async function POST(req: NextRequest) {
@@ -39,7 +45,14 @@ export async function POST(req: NextRequest) {
     const collection = db.collection('newblogentries')
 
     try {
-        const blogPushed = await collection.insertOne(data)
+        const blogData = {
+            name: data.name,
+            title: data.title,
+            content: data.content,
+            tag: data.tag,
+            date: data.date
+        }
+        const blogPushed = await collection.insertOne(blogData)
         return NextResponse.json({ response: `Blog entry inserted with _id: ${blogPushed.insertedId}`, status: 200 })
     } catch (error: any) {
         console.error("Error submitting blog post backend: ", error.message)

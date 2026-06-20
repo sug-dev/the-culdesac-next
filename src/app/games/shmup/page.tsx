@@ -9,6 +9,7 @@ const Page = () => {
     const keys_ref = useRef<Record<string, boolean>>({})
     const x_ref = useRef<number>(50)
     const y_ref = useRef<number>(215)
+    const d_vel = useRef<number>(1)
 
     useEffect(() => {
         const handle_key_down = (e: KeyboardEvent) => {
@@ -35,6 +36,7 @@ const Page = () => {
         if (!ctx) return
 
         const speed = 3
+        const gravity = 1.098
 
         const render = () => {
             const keys = keys_ref.current
