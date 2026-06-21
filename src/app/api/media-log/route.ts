@@ -28,8 +28,8 @@ export async function GET(req: NextRequest) {
     const html = r.map((p: Post) => `
         <article class="main-sub-container" class="sub-container">
             <div class="main-sub-header">
-                <h2 style="width:30%; text-align: left;">${escapeHtml(p.createdAt.toDateString())}</h2>
-                <h2 style="width:40%; text-align: center;">${escapeHtml(p.title)}</h2>
+                <h2 style="width:30%; text-align: left;">${escapeHtml(p.createdAt.toDateString().slice(4))}</h2>
+                <h1 style="width:40%; text-align: center;">${escapeHtml(p.title)}</h1>
                 <h2 style="width:30%; text-align: right;">${escapeHtml(p.genre)}</h2>
             </div>
             <p>${escapeHtml(p.content)}</p>

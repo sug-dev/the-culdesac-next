@@ -15,13 +15,15 @@ export async function GET(req: NextRequest) {
     const html = `
         <div class="main-sub-container">
             <div class="main-sub-header">
-                <h2>About Me</h2>
+                <h2>Site Resources</h2>
             </div>
-            <p>29 / USA & JP / American</p>
-            <p>Previously a freelance software developer, but now unemployed and figuring out which direction I want my career to go.</p>
-            <p>Bouncing between America and Japan. Pursuing a Bachelor's degree so I can apply for work visas overseas. Building websites, making music, and playing gigs are what I spend my time doing. Oh, and a lot of movies recently, too.</p>
-            <p>I am a bird-enthusiast. I also have a pet bird. She's 10 years old now and lives with my friend since it's too difficult taking her to and from Japan. She's in good hands, and I'm sure she doesn't miss me. :)</p>
-            <p>While culturally a Gamer tm I am not regularly practicing at the time. That being said, some of my favorites are the Souls series, Minecraft, Kenshi, and various 'retro' games. Add me on <a href="https://habbo.com"><span class="accent">Habbo!</span></a> @suuug</p>
+            <ul class="sub-list">
+                <li class="standard"><a class="post-link" target="_blank" href="https://gifcities.org">GifCities</a> - For all of the random gifs</li>
+                <li class="standard"><a class="post-link" target="_blank" href="https://habboquests.co/goodies/imager">Habbo Imager</a> - For the Habbo user sprite</li>
+                <li class="standard"><a class="post-link" target="_blank" href="https://ditherit.com">Dither it!</a> - Tool for dithering an image (used for the fishtank background and other images)</li>
+                <li class="standard"><a class="post-link" target="_blank" href="https://namecheap.com">Namecheap</a> - Domain registrar</li>
+                <li class="standard"><a class="post-link" target="_blank" href="https://digitalocean.com">DigitalOcean</a> - Web hosting service</li>
+            </ul>
         </div>
     `
 
