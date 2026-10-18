@@ -90,7 +90,7 @@ export default function Page() {
     useEffect(() => {
         const moveCursor = (e: any) => {
             if (cursorWidth) {
-                setCursor({ x: ((e.clientX - 287)), y: (e.clientY) })
+                setCursor({ x: ((e.clientX - 212)), y: (e.clientY) })
             }
         }
         window.addEventListener('mousemove', (e: any) => {

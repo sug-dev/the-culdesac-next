@@ -141,7 +141,7 @@ export default function Page() {
                     <div className='h-full overflow-y-scroll'>
                         <div className='w-full h-full'>
                             {filteredPosts.length > 0 ? (filteredPosts.map((post, index) => (
-                                <div key={index} className='p-8 py-12 flex flex-col gap-5 sm:px-3 relative'>
+                                <div key={index} className='p-8 py-12 flex flex-col gap-5 sm:px-3 relative border-b border-light'>
 
                                     {/* POST METADATA */}
                                     <div className='flex flex-col items-start gap-1'>

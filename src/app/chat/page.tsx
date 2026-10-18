@@ -222,14 +222,14 @@ export default function Page() {
     }
 
     return (
-        <div className='w-full sm:h-dvh flex-1 relative flex flex-col bg-d'>
+        <div className='w-full sm:h-dvh flex-1 relative flex flex-col bg-m'>
             {loading ? (
                 <Loader />
             ) : (
                 <>
-                <div className='w-full h-[52px] bg-white bg-d border-b border-light flex items-center justify-between px-3 sm:hidden'>
+                {/* <div className='w-full h-[52px] bg-white bg-m border-b border-light flex items-center justify-between px-3 sm:hidden'>
                     <h1 className='font-bold text-xl text-emerald-200'>Cul-De-Sac Chat</h1>
-                </div>
+                </div> */}
                     <div ref={bottomScroll} className='w-full flex-1 overflow-y-scroll overflow-x-hidden sm:mt-14 relative bg-m border-b border-light'>
                         {messages ? (
                             <div className='px-3 py-3'>
@@ -271,13 +271,13 @@ export default function Page() {
                         ) : ( <div></div> )}
                     </div>
 
-                    <div className='w-full h-32 bg-d flex items-center justify-center p-3 gap-3 sm:h-16 relative'>
+                    <div className='w-full bg-m flex items-center justify-center p-3 gap-3 sm:h-16 relative'>
                         {!session ? (
                             <div className='absolute top-[-25px] left-0 w-full text-center'>
                                 {/* <h1 className='text-gray-300 text-neutral-600 font-light text-xs translate-y-[8px]'>If you are not logged in, your messages will not persist.</h1> */}
                             </div>
                         ) : null}
-                        <textarea name="message" value={messageTextContent} onChange={handleChange} placeholder='Enter a message...' className='resize-none border border-light bg-m text-emerald-200 rounded-lg sm:rounded-full h-full flex-1 p-3 py-2 sm:px-3 sm:py-1.5' />
+                        <textarea name="message" value={messageTextContent} onChange={handleChange} placeholder='Enter a message...' className='resize-none border border-light bg-l text-emerald-200 rounded-lg sm:rounded-full h-[48px] flex-1 p-2 py-1 sm:px-3 sm:py-1.5' />
                         <div className='flex flex-col gap-3 h-full'>
                             {/* <div className='flex gap-3 flex-1 sm:hidden'>
                                 <button className='rounded-lg bg-gray-300 bg-d text-emerald-200 w-1/2 cursor-not-allowed' onClick={scrolling}>G</button>

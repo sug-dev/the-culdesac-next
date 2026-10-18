@@ -9,7 +9,10 @@
     background-color: rgb(31,31,32);
 }
 .bg-l {
-    background-color: rgb(40,40,41);
+    background-color: rgb(50, 50, 51);
+}
+.bg-sl {
+    background-color: rgb(63, 63, 63);
 }
 
 .bg-bl {
@@ -21,12 +24,18 @@
 }
 
 .border-light {
-    border-color: rgb(40,40,41);
+    border-color: rgb(69, 69, 69);
 }
 
 
 .bg-m-fade {
     background: linear-gradient(180deg,rgba(31,31,32,0) 0%, rgba(31,31,32,1) 100%);
+}
+.bg-d-fade {
+    background: linear-gradient(180deg,rgba(24,24,24,0) 0%, rgba(24,24,24,1) 100%);
+}
+.bg-l-fade {
+    background: linear-gradient(180deg,rgba(50, 50, 51,0) 0%, rgba(50, 50, 51,1) 100%);
 }
 
 /* :root {

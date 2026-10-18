@@ -23,16 +23,16 @@ const cardIcon = "M11 4H7.2C6.0799 4 5.51984 4 5.09202 4.21799C4.71569 4.40974 4
 
 
 const selectedDivStyle = 'bg-white py-2 flex items-center cursor-pointer'
-const unSelectedDivStyle = 'py-2 flex items-center cursor-pointer'
+const unSelectedDivStyle = 'py-2 px-1 flex items-center cursor-pointer hover:bg-neutral-800 rounded'
 
 const selectedH1Style = 'font-light text-blue-500'
 const unSelectedH1Style = 'font-light text-neutral-400'
 
-const toggledNavStyle = 'h-screen w-72 bg-d flex flex-col gap-6 border-r border-light sm:border-r-0 sm:border-b sm:w-screen sm:h-full sm:z-40 sm:overflow-y-hidden sm:absolute'
-const hiddenNavStyle = 'h-screen w-72 bg-d flex flex-col gap-6 border-r border-light sm:border-none sm:w-screen sm:h-auto sm:z-40 sm:overflow-y-hidden sm:absolute sm:pb-0'
+const toggledNavStyle = 'h-screen w-[212px] bg-d flex flex-col gap-2 border-r border-light sm:border-r-0 sm:border-b sm:w-screen sm:h-full sm:z-40 sm:overflow-y-hidden sm:absolute'
+const hiddenNavStyle = 'h-screen w-[212px] bg-d flex flex-col gap-2 border-r border-light sm:border-none sm:w-screen sm:h-auto sm:z-40 sm:overflow-y-hidden sm:absolute sm:pb-0'
 
-const navLinksShownStyle = 'flex flex-col gap-6 p-3'
-const navLinksHiddenStyle = 'flex flex-col gap-6 p-3 sm:hidden'
+const navLinksShownStyle = 'flex flex-col gap-2 p-2'
+const navLinksHiddenStyle = 'flex flex-col gap-2 p-2 sm:hidden'
 
 export default function Nav() {
 
@@ -64,6 +64,7 @@ export default function Nav() {
     const navToggle = () => {
         setNavToggled(!navToggled)
         setToolsToggled(false)
+        setGamesToggled(false)
     }
     
     useEffect(() => {
@@ -87,29 +88,22 @@ export default function Nav() {
     }
 
     const Header = () => {
-        if (pathname.split('/')[1] === 'flashcards') {
+        if (pathname.split('/')[1] != "" && pathname.split('/')[1] != "articles") {
             return (
                 <>
-                    <h1 className='text-emerald-200 font-black text-3xl flex gap-2 items-center'><div className='w-[10px] h-[10px] rounded-full bg-white'></div>FLASHCARDS</h1>
+                    <h1 className='text-neutral-200 font-black text-xl flex gap-2 items-center'><div className='w-[6px] h-[6px] rounded-full bg-neutral-200'></div>{pathname.split('/')[pathname.split('/').length - 1].toLocaleUpperCase()}</h1>
                 </>
             )
-        } else if (pathname.split('/')[1] === 'chat') {
+        } else if (pathname.split('/')[1] == "articles") {
             return (
                 <>
-                    <h1 className='text-emerald-200 font-black text-3xl flex gap-2 items-center'><div className='w-[10px] h-[10px] rounded-full bg-white'></div>CHAT</h1>
+                    <h1 className='text-neutral-200 font-black text-xl flex gap-2 items-center'><div className='w-[6px] h-[6px] rounded-full bg-neutral-200'></div>{pathname.split('/')[1].toLocaleUpperCase()}</h1>
                 </>
             )
-        } else if (pathname.split('/')[1] === 'blog') {
+        } else if (pathname.split('/')[1] == "") {
             return (
                 <>
-                    <h1 className='text-emerald-200 font-black text-3xl flex gap-2 items-center'><div className='w-[10px] h-[10px] rounded-full bg-white'></div>BLOG</h1>
-                </>
-            )
-        } else {
-            return (
-                <>
-                    {/* <h1 className='text-lg font-light text-emerald-200'>the</h1> */}
-                    <h1 className='text-emerald-200 font-black text-3xl flex gap-1 items-center'><span className='text-lg font-light text-emerald-200 mr-1 mt-auto'>the</span>CUL<div className='w-[10px] h-[10px] rounded-full bg-white'></div>DE<div className='w-[10px] h-[10px] rounded-full bg-white'></div>SAC</h1>
+                    <h1 className='text-neutral-200 font-black text-xl flex gap-1 items-center'><span className='text-lg font-light text-neutral-200 mr-1 mt-auto'>the</span>CUL<div className='w-[6px] h-[6px] rounded-full bg-neutral-200'></div>DE<div className='w-[6px] h-[6px] rounded-full bg-neutral-200'></div>SAC</h1>
                 </>
             )
         } 
@@ -139,7 +133,7 @@ export default function Nav() {
                     return (
                         <Link key={key} className={link.selected ? selectedDivStyle : unSelectedDivStyle} href={key} onClick={() => {handleClick(key); navToggle()}}>
                             <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" className='mr-2'>
-                                <path d={link.icon} stroke={link.selected ? "#3b82f6" : "white"} strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+                                <path d={link.icon} stroke={link.selected ? "#3b82f6" : "oklch(70.8% 0 none)"} strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                             <h1 className={link.selected ? selectedH1Style : unSelectedH1Style}>{link.text}</h1>
                         </Link>
@@ -147,21 +141,21 @@ export default function Nav() {
                 })}
 
                 {/* GAMES */}
-                <div className={'flex flex-col items-center cursor-pointer relative hidden'}>
-                    <div className='flex w-full items-center justify-between' onClick={() => {setGamesToggled(!gamesToggled)}}>
+                <div className={'flex flex-col items-center cursor-pointer relative hover:bg-neutral-800 rounded p-1'}>
+                    <div className='flex w-full items-center gap-3' onClick={() => {setGamesToggled(!gamesToggled)}}>
                         <div className='flex items-center'>
                             <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" className='mr-2'>
-                                <path d={gamesIcon} stroke="white" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+                                <path d={gamesIcon} stroke="oklch(70.8% 0 none)" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                             <h1 className={unSelectedH1Style}>Games</h1>
                         </div>
-                        <Image src={DownArrow} width="30" height="10" alt="" className={`w-5 h-5 duration-300 ${gamesToggled ? `rotate-0` : `rotate-180`}`} />
+                        <Image src={DownArrow} width="20" height="7" alt="" className={`w-3 h-3 duration-200 ${gamesToggled ? `rotate-0` : `rotate-180`}`} />
                     </div>
                     {gamesToggled ? (
-                        <div className='flex flex-col w-full items-end gap-6 sm:gap-4 p-2 pt-10 sm:pt-6'>
-                            <Link href="/games/cookie-clicker" className='text-neutral-400 font-light hover:border-b-white hover:border-light' onClick={navToggle}>Cookie Clicker</Link>
-                            <Link href="/games/produce-hero" className='text-neutral-400 font-light hover:border-b-white hover:border-light' onClick={navToggle}>Produce Hero</Link>
-                            <Link href="/games/culdesac-defense" className='text-neutral-400 font-light hover:border-b-white hover:border-light' onClick={navToggle}>The Cul-De-Sac Defense</Link>
+                        <div className='flex flex-col w-full items-end gap-3 sm:gap-3 p-1 pt-6 sm:pt-3'>
+                            <Link href="/games/clicker" className='flex items-center gap-1 text-neutral-400 font-light hover:underline' onClick={navToggle}>Cookie Clicker<div className='w-[6px] h-[6px] rounded-full bg-neutral-400 mt-1'></div></Link>
+                            <Link href="/games/produce-hero" className='flex items-center gap-1 text-neutral-400 font-light hover:underline' onClick={navToggle}>Produce Hero<div className='w-[6px] h-[6px] rounded-full bg-neutral-400 mt-1'></div></Link>
+                            <Link href="/games/cds-defense" className='flex items-center gap-1 text-neutral-400 font-light hover:underline' onClick={navToggle}>Cul-De-Sac Defense<div className='w-[6px] h-[6px] rounded-full bg-neutral-400 mt-1'></div></Link>
                         </div>
                     ) : (
                         <></>
@@ -169,23 +163,23 @@ export default function Nav() {
                 </div>
 
                 {/* TOOLS */}
-                <div className={'flex flex-col items-center cursor-pointer relative'}>
+                <div className={'flex flex-col items-center cursor-pointer relative hover:bg-neutral-800 rounded p-1'}>
                     <div className='flex w-full items-center gap-3' onClick={() => {setToolsToggled(!toolsToggled)}}>
                         <div className='flex items-center'>
                             <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" className='mr-2'>
-                                <path d={toolsIcon1} stroke="white" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
-                                <path d={toolsIcon2} stroke="white" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+                                <path d={toolsIcon1} stroke="oklch(70.8% 0 none)" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+                                <path d={toolsIcon2} stroke="oklch(70.8% 0 none)" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                             <h1 className={unSelectedH1Style}>Tools</h1>
                         </div>
                         <Image src={DownArrow} width="20" height="7" alt="" className={`w-3 h-3 duration-200 ${toolsToggled ? `rotate-0` : `rotate-180`}`} />
                     </div>
                     {toolsToggled ? (
-                        <div className='flex flex-col w-full items-end gap-6 sm:gap-4 p-2 pt-10 sm:pt-6'>
-                            <Link href="/tools/flashcards" className='text-neutral-400 font-light hover:border-b-white hover:border-light' onClick={navToggle}>Flashcards</Link>
-                            <Link href="/tools/whiteboard" className='text-neutral-400 font-light hover:border-b-white hover:border-light' onClick={navToggle}>Whiteboard</Link>
-                            <Link href="/tools/pointillizer" className='text-neutral-400 font-light hover:border-b-white hover:border-light' onClick={navToggle}>Image Pointillizer</Link>
-                            <Link href="/tools/kana-quiz" className='text-neutral-400 font-light hover:border-b-white hover:border-light' onClick={navToggle}>Kana Quiz</Link>
+                        <div className='flex flex-col w-full items-end gap-3 sm:gap-3 p-1 pt-6 sm:pt-3'>
+                            <Link href="/tools/flashcards" className='flex items-center gap-1 text-neutral-400 font-light hover:underline' onClick={navToggle}>Flashcards<div className='w-[6px] h-[6px] rounded-full bg-neutral-400 mt-1'></div></Link>
+                            <Link href="/tools/whiteboard" className='flex items-center gap-1 text-neutral-400 font-light hover:underline' onClick={navToggle}>Whiteboard<div className='w-[6px] h-[6px] rounded-full bg-neutral-400 mt-1'></div></Link>
+                            <Link href="/tools/pointillizer" className='flex items-center gap-1 text-neutral-400 font-light hover:underline' onClick={navToggle}>Image Pointillizer<div className='w-[6px] h-[6px] rounded-full bg-neutral-400 mt-1'></div></Link>
+                            <Link href="/tools/kana-quiz" className='flex items-center gap-1 text-neutral-400 font-light hover:underline' onClick={navToggle}>Kana Quiz<div className='w-[6px] h-[6px] rounded-full bg-neutral-400 mt-1'></div></Link>
                         </div>
                     ) : (
                         <></>
@@ -199,8 +193,8 @@ export default function Nav() {
                 {status == 'authenticated' ? (
                     <div className='flex items-center cursor-pointer' onClick={() => {signOut({ callbackUrl: 'https://theculdesac.club', redirect:true }); navToggle()}}>
                         <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" className='mr-2'>
-                            <path d={profileIcon1} stroke="white" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
-                            <path d={profileIcon2} stroke="white" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+                            <path d={profileIcon1} stroke="oklch(70.8% 0 none)" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+                            <path d={profileIcon2} stroke="oklch(70.8% 0 none)" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                         <h1 className='text-center text-neutral-400 font-bold text-sm'>Logout</h1>
                     </div>
@@ -211,8 +205,8 @@ export default function Nav() {
                         <Link className='text-center text-neutral-400 font-bold text-sm cursor-pointer' href={loginUrl} onClick={navToggle}>
                             <div className='flex items-center'>
                                 <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" className='mr-2'>
-                                    <path d={profileIcon1} stroke="white" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
-                                    <path d={profileIcon2} stroke="white" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+                                    <path d={profileIcon1} stroke="oklch(70.8% 0 none)" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+                                    <path d={profileIcon2} stroke="oklch(70.8% 0 none)" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
                                 </svg>
                                 <h1 className='text-center text-neutral-400 font-bold text-sm'>Login</h1>
                             </div>

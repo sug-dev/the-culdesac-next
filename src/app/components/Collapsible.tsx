@@ -12,7 +12,7 @@ export const Collapsible = ({ children, title, open, back }: PropsWithChildren &
                 <button
                     onClick={() => setIsOpen(!isOpen)}
                     className={`font-bold flex gap-2 flex-1 text-2xl flex items-center ${
-                        isOpen ? "text-emerald-200" : "text-emerald-200"
+                        isOpen ? "text-neutral-200" : "text-neutral-200"
                     }`}
                     >
                     {title}

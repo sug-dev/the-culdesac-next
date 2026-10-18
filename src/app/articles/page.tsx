@@ -53,7 +53,7 @@ export default function Page() {
     }, [])
 
     return (
-        <div className='bg-d h-full relative flex flex-col sm:pt-[57px] sm:w-screen'>
+        <div className='bg-m h-full relative flex flex-col sm:pt-[57px] sm:w-screen'>
             {loading ? (
                 <Loader />
             ) : (
@@ -80,14 +80,14 @@ export default function Page() {
                         <Image src={DownArrow} width="15" height="5" alt="" className={`w-3 h-3 duration-300 ${isOpen ? `rotate-180` : `rotate-0`}`} />
                     </button>
                 </div>
-                <div className='flex-1 relative p-9 sm:p-3 sm:pt-12 grid grid-cols-2 sm:grid-cols-1 auto-rows-min gap-9 sm:border-b border-light'>
+                <div className='flex-1 relative p-3 sm:p-3 sm:pt-12 grid grid-cols-2 sm:grid-cols-1 auto-rows-min gap-9 sm:border-b border-light'>
                     {articles ? (
                         articles.map((a, i) => {
                             return (
-                                <Link href={`/articles/${a._id}`} key={i} className='self-start bg-m border border-light rounded flex flex-col max-h-[300px] sm:max-h-[250px] overflow-y-hidden relative shadow cursor-pointer'>
-                                    <h1 className='p-3 text-emerald-200 font-bold text-xl'>{a.title}</h1>
+                                <Link href={`/articles/${a._id}`} key={i} className='self-start bg-l border border-light rounded flex flex-col max-h-[300px] sm:max-h-[250px] overflow-y-hidden relative shadow cursor-pointer'>
+                                    <h1 className='p-3 text-neutral-200 font-bold text-xl'>{a.title}</h1>
                                     <p className='p-3 text-neutral-400 font-light text-xs whitespace-pre-wrap'>{a.content}</p>
-                                    <div className='absolute bottom-0 left-0 w-full h-2/3 bg-m-fade'></div>
+                                    <div className='absolute bottom-0 left-0 w-full h-2/3 bg-l-fade'></div>
                                 </Link>
                             )
                         })

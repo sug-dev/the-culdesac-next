@@ -62,27 +62,27 @@ export default function Home() {
     }
 
     return session && session.user ? (
-        <div className='flex h-full w-full sm:flex-col p-3 sm:p-3 gap-3 sm:pt-[57px] overflow-y-scroll bg-d'>
+        <div className='flex h-full w-full sm:flex-col p-3 sm:p-3 gap-3 sm:pt-[57px] overflow-y-scroll bg-m'>
             <div className='grid grid-cols-4 sm:grid-cols-2 sm:pt-3 gap-3 w-full h-full auto-rows-min'>
                 <div>
                     <h1 className='text-white mb-3'>suuug.net status</h1>
                     <form onSubmit={handleStatusSubmit} className='w-full flex flex-col gap-3 items-center'>
                         <input
-                            className='w-full max-w-[500px] p-1.5 px-3 rounded-lg bg-m border border-light text-emerald-200'
+                            className='w-full max-w-[500px] p-1.5 px-3 rounded-lg bg-l border border-light text-neutral-200'
                             type="text"
                             required
                             value={s}
                             onChange={(e) => setS(e.target.value)}
                             placeholder="Set status..."
                         />
-                        <button type="submit" className='bg-bl text-emerald-200 rounded-lg p-1.5 px-3 w-full max-w-[500px]'>Submit</button>
+                        <button type="submit" className='bg-bl text-neutral-200 rounded-lg p-1.5 px-3 w-full max-w-[500px]'>Submit</button>
                     </form>
                 </div>
                 <div>
                     <h1 className='text-white mb-3'>suuug.net media log</h1>
                     <form onSubmit={handleMediaLogSubmit} className='w-full flex flex-col gap-3 items-center grid grid-cols-2'>
                         <input
-                            className='w-full max-w-[500px] p-1.5 px-3 rounded-lg bg-m border border-light text-emerald-200 col-span-2'
+                            className='w-full max-w-[500px] p-1.5 px-3 rounded-lg bg-l border border-light text-neutral-200 col-span-2'
                             type="text"
                             required
                             value={mediaLogData.title}
@@ -91,7 +91,7 @@ export default function Home() {
                             placeholder="Movie / Show Title"
                         />
                         <input
-                            className='w-full max-w-[500px] p-1.5 px-3 rounded-lg bg-m border border-light text-emerald-200'
+                            className='w-full max-w-[500px] p-1.5 px-3 rounded-lg bg-l border border-light text-neutral-200'
                             type="text"
                             required
                             value={mediaLogData.genre}
@@ -100,7 +100,7 @@ export default function Home() {
                             placeholder="genre"
                         />
                         <input
-                            className='w-full max-w-[500px] p-1.5 px-3 rounded-lg bg-m border border-light text-emerald-200'
+                            className='w-full max-w-[500px] p-1.5 px-3 rounded-lg bg-l border border-light text-neutral-200'
                             type="text"
                             required
                             value={mediaLogData.rating}
@@ -109,14 +109,14 @@ export default function Home() {
                             placeholder="Rating (out of 5)"
                         />
                         <textarea
-                            className='w-full max-w-[500px] p-1.5 px-3 rounded-lg bg-m border border-light text-emerald-200 col-span-2'
+                            className='w-full max-w-[500px] p-1.5 px-3 rounded-lg bg-l border border-light text-neutral-200 col-span-2'
                             required
                             value={mediaLogData.content}
                             name="content"
                             onChange={handleMediaLogChange}
                             placeholder="Content"
                         />
-                        <button type="submit" className='bg-bl text-emerald-200 rounded-lg p-1.5 px-3 w-full max-w-[500px]'>Submit</button>
+                        <button type="submit" className='bg-bl text-neutral-200 rounded-lg p-1.5 px-3 w-full max-w-[500px]'>Submit</button>
                     </form>
                 </div>
             </div>

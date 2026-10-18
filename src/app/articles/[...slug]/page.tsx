@@ -83,23 +83,24 @@ export default function Page({ params }: { params: { slug: string } }) {
     }
 
     return (
-        <div className='bg-d h-full relative flex flex-col sm:pt-[57px] sm:w-screen'>
+        <div className='bg-m h-full relative flex flex-col sm:pt-[57px] sm:w-screen'>
             {loading ? (
                 <Loader />
             ) : (
                 <>
                 <div className='flex-1 relative p-9 sm:p-3 sm:pt-12 grid grid-cols-2 sm:grid-cols-1 auto-rows-min gap-9 sm:border-b border-light overflow-y-scroll'>
                     <div className='flex flex-col gap-5 relative'>
+                        <Link href="/articles" className='font-light text-sm text-neutral-500 hover:underline'>...back to articles</Link>
                         {/* POST METADATA */}
                         <div className='flex flex-col items-start gap-1'>
                             <div className='flex items-center gap-2 sm:w-full sm:items-end sm:gap-1'>
-                                <h1 className='font-bold text-3xl sm:text-xl text-emerald-200'>{article?.title} <span className='font-light text-gray-400 text-xs pt-1 sm:pb-0.5 px-1'> by </span><span className='color-bl'> {article?.name}</span></h1>
+                                <h1 className='font-bold text-xl sm:text-xl text-neutral-200'>{article?.title} <span className='font-light text-gray-400 text-xs pt-1 sm:pb-0.5 px-1'> by </span><span className='color-bl'> {article?.name}</span></h1>
                             </div>
-                            <span className='text-neutral-600'>{article?.date}</span>
+                            <span className='text-neutral-600 text-sm'>{article?.date}</span>
                         </div>
 
                         {/* POST CONTENT */}
-                        <div className='text-lg font-light whitespace-pre-wrap max-w-[800px] text-neutral-400'>
+                        <div className='font-light whitespace-pre-wrap max-w-[800px] text-neutral-400'>
                             {/* {article?.content.split(' ').map((t, i) => {
                                 let token: React.ReactNode = <span className='font-light'>{t + ' '}</span>
                                 if (t.startsWith('**') && t.endsWith('**')) {

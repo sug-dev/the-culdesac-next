@@ -52,11 +52,27 @@ export async function POST(req: NextRequest) {
             tag: data.tag,
             date: data.date
         }
+
+        // Validate that no fields are null or undefined
+        for (const [key, value] of Object.entries(blogData)) {
+            if (value === undefined || value === null) {
+                throw new Error(`Missing required field: ${key}`)
+            }
+        }
+
         const blogPushed = await collection.insertOne(blogData)
-        return NextResponse.json({ response: `Blog entry inserted with _id: ${blogPushed.insertedId}`, status: 200 })
+
+        return NextResponse.json({
+            response: `Blog entry inserted with _id: ${blogPushed.insertedId}`,
+            status: 200
+        })
     } catch (error: any) {
-        console.error("Error submitting blog post backend: ", error.message)
-        return NextResponse.json({ response: "FAILED TO PUSH BLOG ENTRY" })
+        console.error("Error submitting blog post backend:", error.message)
+
+        return NextResponse.json(
+            { response: error.message },
+            { status: 400 }
+        )
     }
 }
 
