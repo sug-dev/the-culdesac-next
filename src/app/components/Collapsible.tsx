@@ -11,7 +11,7 @@ export const Collapsible = ({ children, title, open, back }: PropsWithChildren &
             <div className="flex items-center justify-between">
                 <button
                     onClick={() => setIsOpen(!isOpen)}
-                    className={`font-bold flex gap-2 flex-1 text-2xl flex items-center ${
+                    className={`font-bold flex gap-2 flex-1 text-xl flex items-center ${
                         isOpen ? "text-neutral-200" : "text-neutral-200"
                     }`}
                     >

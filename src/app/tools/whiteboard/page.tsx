@@ -205,7 +205,7 @@ export default function Page() {
     }
 
     return (
-        <div className='flex-1 bg-m h-full relative flex flex-col overflow-hidden sm:pt-[57px]'>
+        <div className='flex-1 bg-m h-full relative flex flex-col overflow-hidden sm:pt-[47px]'>
             <div className='flex items-center gap-3 w-full bg-d p-3 border-b border-light'>
                 <button className={isEraser || isSelect ? 'text-2xl opacity-25' : 'text-2xl opacity-100'} onClick={() => {setColor(tempColor); setIsEraser(false); setIsDraw(true); setIsSelect(false)}}>🖊️</button>
                 <button className={isEraser ? 'text-2xl opacity-100' : 'text-2xl opacity-25'} onClick={() => {setEraser(); setIsSelect(false); setIsEraser(true)}}>🧼</button>

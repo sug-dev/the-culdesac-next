@@ -469,12 +469,12 @@ const Flashcards = () => {
                     </>
                 ) : (
                     <>
-                    <div className="bg-d w-full sm:w-screen flex flex-col gap-3 pt-3 border-b border-light">
-                        <div className="flex justify-between px-3">
+                    <div className="bg-d w-full sm:w-screen flex flex-col gap-3 border-b border-light">
+                        <div className="flex justify-between px-3 py-2 sm:py-0">
                             <Collapsible title="Categories" open={false} back={undefined}>
-                                <div className="flex items-center gap-3 h-[33px]">
-                                    <input type="text" placeholder="New category..." value={categoryToAdd} onChange={(e) => {setCategoryToAdd(e.target.value)}} className="bg-transparent text-neutral-200 border-b border-light py-1 text-md flex-1" />
-                                    <button onClick={add_category} className="font-bold text-neutral-200 rounded bg-bl px-3 text-sm h-full">Submit</button>
+                                <div className="flex items-center gap-3">
+                                    <input type="text" placeholder="New category..." value={categoryToAdd} onChange={(e) => {setCategoryToAdd(e.target.value)}} className="bg-transparent text-neutral-200 border-b border-light py-1 text-sm flex-1 h-full" />
+                                    <button onClick={add_category} className="font-bold text-neutral-200 rounded bg-blue-600 hover:bg-blue-700 px-3 text-sm h-[25px]">Submit</button>
                                 </div>
                             </Collapsible>
                         </div>
@@ -483,7 +483,7 @@ const Flashcards = () => {
                                 {categories.map((category, index) => {
                                     if (category.type === 'category') {
                                         return (
-                                            <button key={index} className={`text-neutral-200 font-light text-sm px-3 py-3 cursor-pointer ${openCategory?.name === category.name ? "border-b-4 border-neutral-200" : "border-b-4 border-transparent" }`} onClick={() => {setOpenCategory(category)}}>{category.name}</button>
+                                            <button key={index} className={`text-neutral-200 font-light text-sm px-3 py-1 cursor-pointer ${openCategory?.name === category.name ? "border-b-4 border-neutral-200" : "border-b-4 border-transparent" }`} onClick={() => {setOpenCategory(category)}}>{category.name}</button>
                                         )
                                     }
                                 })}
@@ -491,8 +491,8 @@ const Flashcards = () => {
                             </div>
                             {categories.length > 0 && addingFolder ? (
                                 <div className="flex items-center gap-3 p-3 border-t border-light h-[50px]">
-                                    <input type="text" placeholder="New folder..." value={folderToAdd} onChange={(e) => {setFolderToAdd(e.target.value)}} className="bg-transparent border-b border-light text-neutral-200 py-1 text-md flex-1 h-full" />
-                                    <button onClick={add_folder} className="font-bold text-neutral-200 rounded bg-bl px-3 text-sm h-full cursor-pointer">Submit</button>
+                                    <input type="text" placeholder="New folder..." value={folderToAdd} onChange={(e) => {setFolderToAdd(e.target.value)}} className="bg-transparent border-b border-light text-neutral-200 py-1 text-sm flex-1 h-full" />
+                                    <button onClick={add_folder} className="font-bold text-neutral-200 rounded bg-blue-600 hover:bg-blue-700 px-3 text-sm h-full cursor-pointer">Submit</button>
                                 </div>
                             ) : <></>}
                         </div>

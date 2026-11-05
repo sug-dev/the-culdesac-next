@@ -322,7 +322,7 @@ const Page = () => {
     }
 
     return (
-        <div className='flex flex-col items-center sm:w-full sm:pt-14 bg-m flex-1 sm:border-b border-light'>
+        <div className='flex flex-col items-center sm:w-full sm:pt-12 bg-m flex-1 sm:border-b border-light'>
             {!workingDeck ? (
                 <div className="w-full p-3 flex flex-col gap-3 items-center">
                     <div className="text-neutral-200 text-xl shadow cursor-pointer font-bold px-2 py-[2px] rounded bg-sl w-full" onClick={() => {start_quiz(hiragana, 'Hiragana')}}>
@@ -335,7 +335,7 @@ const Page = () => {
             ) : (
                 <>
                 <div className="w-full bg-d flex items-center justify-between border-b border-light">
-                    <h1 className="text-neutral-200 font-bold text-2xl p-3">{quiz}</h1>
+                    <h1 className="text-neutral-200 font-bold text-xl p-3">{quiz}</h1>
                     <button className="text-neutral-500 underline p-3 text-xs font-light" onClick={() => {reset()}}>Back</button>
                 </div>
                 <div className="w-full p-9 flex flex-col gap-3 sm:justify-start flex-1">

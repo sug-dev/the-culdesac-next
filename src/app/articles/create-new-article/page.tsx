@@ -72,11 +72,11 @@ export default function Page() {
 
     
     return session && session.user ? (
-        <div className='bg-d flex-1 w-full relative flex flex-col sm:pt-[57px]'>
+        <div className='bg-m flex-1 w-full relative flex flex-col sm:pt-[57px]'>
             <div className='flex flex-col gap-3 w-full h-full max-w-[800px] p-3'>
-                <input type='text' name="title" placeholder='Title...' className='bg-m rounded p-1.5 px-3 border border-light text-emerald-200' value={postData.title} onChange={handleChange}/>
-                <textarea placeholder='Content...' name="content" className='bg-m rounded p-1.5 px-3 resize-none border border-light text-emerald-200 h-96 sm:h-64' value={postData.content} onChange={handleChange}/>
-                <button className='w-full mx-auto p-1 bg-bl rounded text-emerald-200 font-bold' onClick={setArticleToPost}>Submit</button>
+                <input type='text' name="title" placeholder='Title...' className='bg-l rounded p-1.5 px-3 border border-light text-neutral-200' value={postData.title} onChange={handleChange}/>
+                <textarea placeholder='Content...' name="content" className='bg-l rounded p-1.5 px-3 resize-none border border-light text-neutral-200 h-96 sm:h-64' value={postData.content} onChange={handleChange}/>
+                <button className='w-full mx-auto p-1 bg-blue-600 hover:bg-blue-700 rounded text-neutral-200 font-bold' onClick={setArticleToPost}>Submit</button>
             </div>
         </div>
     ) : <h1>Not logged in...</h1>

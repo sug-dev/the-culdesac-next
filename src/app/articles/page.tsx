@@ -53,7 +53,7 @@ export default function Page() {
     }, [])
 
     return (
-        <div className='bg-m h-full relative flex flex-col sm:pt-[57px] sm:w-screen'>
+        <div className='bg-m h-full relative flex flex-col sm:pt-[47px] sm:w-screen'>
             {loading ? (
                 <Loader />
             ) : (
@@ -63,20 +63,20 @@ export default function Page() {
                     {isOpen ? (
                         <div className='sm:overflow-x-scroll overflow-y-hidden bg-d border-b border-light flex items-center justify-between gap-9 relative'>
                             <div className='flex gap-3 items-center sm:min-w-[100vw] p-3'>
-                                <input type="text" name="search" placeholder="Filter by tag..." autoCapitalize='off' autoCorrect='off' className='border p-1 px-3 rounded-full text-emerald-200 bg-m border-light font-light' />
-                                <button className='bg-bl text-emerald-200 font-bold text-sm px-4 py-1 rounded-full' onClick={() => {}}>Filter</button>
-                                <button className='text-neutral-500 text-sm py-1 rounded-full' onClick={() => {}}>Clear</button>
+                                <input type="text" name="search" placeholder="Filter by tag..." autoCapitalize='off' autoCorrect='off' className='border p-1 px-3 rounded-full text-neutral-200 bg-m border-light font-light' />
+                                <button className='bg-blue-600 hover:bg-blue-700 text-neutral-200 font-bold text-sm px-4 py-1 rounded-full' onClick={() => {}}>Filter</button>
+                                <button className='text-neutral-500 text-sm py-1 rounded-full hover:underline' onClick={() => {}}>Clear</button>
                             </div>
                             <div className='flex items-center flex-shrink-0 px-3'>
                                 {currentUser !== '' ? (
-                                    <Link href='/articles/create-new-article' className='bg-bl text-emerald-200 font-bold text-sm rounded-full px-3 py-1'>New Article</Link>
+                                    <Link href='/articles/create-new-article' className='bg-blue-600 hover:bg-blue-700 text-neutral-200 font-bold text-sm rounded-full px-3 py-1'>New Article</Link>
                             ) : null}
                             </div>
                         </div>
                     ) : (
                         <></>
                     )}
-                    <button className={`fixed right-3 ${isOpen ? `top-[58px] sm:top-[115px]` : 'top-[0px] sm:top-[57px]'} bg-d rounded-b-lg border border-t-0 border-light px-6 py-2 z-10 font-bold text-emerald-200 text-lg`}onClick={() => {setIsOpen(!isOpen)}}>
+                    <button className={`fixed right-3 ${isOpen ? `top-[58px] sm:top-[105px]` : 'top-[0px] sm:top-[47px]'} bg-d rounded-b-lg border border-t-0 border-light px-6 py-2 z-10 font-bold text-neutral-200 text-lg`}onClick={() => {setIsOpen(!isOpen)}}>
                         <Image src={DownArrow} width="15" height="5" alt="" className={`w-3 h-3 duration-300 ${isOpen ? `rotate-180` : `rotate-0`}`} />
                     </button>
                 </div>

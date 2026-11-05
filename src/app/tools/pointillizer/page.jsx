@@ -134,7 +134,7 @@ const Page = () => {
     }
     
     return (
-        <div ref={body_ref} className='flex flex-col items-center sm:w-full sm:pt-14 bg-m flex-1 sm:border-b border-light'>
+        <div ref={body_ref} className='flex flex-col items-center sm:w-full sm:pt-12 bg-m flex-1 sm:border-b border-light'>
             <a href="#" className='hidden' ref={save_link_ref}></a>
             <div id="ui_container" className='flex flex-col items-center w-full max-w-[100vw]'>
                 <input className='bg-d p-3 w-full text-emerald-200 text-xs border-b border-light' type="file" name="image" id="image" onChange={(e) => {upload_image(e.target.files[0])}}/>

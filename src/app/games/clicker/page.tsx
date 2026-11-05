@@ -135,7 +135,7 @@ const Page = () => {
     }, [cookiesPerSecond])
 
     return (
-        <div className='bg-m flex-1 h-full relative flex flex-col'>
+        <div className='bg-m flex-1 h-full relative flex flex-col w-full'>
             <div className='w-full flex-1 flex sm:flex-col sm:h-dvh'>
 
                 {/* Left cookie clicker panel */}
@@ -153,7 +153,7 @@ const Page = () => {
                         <h1 className='text-center text-neutral-500 font-light text-xl'>Cookies:</h1>
                         <h1 className='text-center font-bold text-xl text-neutral-500'>{Math.floor(cookieTotal)}</h1>
                     </div>
-                    <Image src={'/save.svg'} alt='save icon' width={25} height={25} className='absolute top-3 left-3 cursor-pointer' onClick={saveState} />
+                    <Image src={'/save.svg'} alt='save icon' width={25} height={25} className='absolute top-3 sm:top-24 left-3 cursor-pointer' onClick={saveState} />
                 </div>
 
                 {/* Right cookie clicker UPGRADES panel */}

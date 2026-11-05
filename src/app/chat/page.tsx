@@ -227,9 +227,6 @@ export default function Page() {
                 <Loader />
             ) : (
                 <>
-                {/* <div className='w-full h-[52px] bg-white bg-m border-b border-light flex items-center justify-between px-3 sm:hidden'>
-                    <h1 className='font-bold text-xl text-emerald-200'>Cul-De-Sac Chat</h1>
-                </div> */}
                     <div ref={bottomScroll} className='w-full flex-1 overflow-y-scroll overflow-x-hidden sm:mt-14 relative bg-m border-b border-light'>
                         {messages ? (
                             <div className='px-3 py-3'>
@@ -258,7 +255,7 @@ export default function Page() {
                                                     <Image loader={imageLoader} src={message.image} alt="" width={250} height={250} className='rounded-lg mb-1'/>
                                                 )}
                                                 {message.messageText && (
-                                                    <p className={`inline-block p-1.5 px-3 rounded-lg ${isUserMessage ? 'bg-bl text-emerald-200' : 'bg-emerald-700/75 text-emerald-200'} max-w-[800px] sm:max-w-64`}>
+                                                    <p className={`inline-block p-1.5 px-3 rounded-lg ${isUserMessage ? 'bg-blue-600 text-neutral-200' : 'bg-neutral-700 text-neutral-200'} max-w-[800px] sm:max-w-64`}>
                                                         {message.messageText}
                                                     </p>
                                                 )}
@@ -271,19 +268,13 @@ export default function Page() {
                         ) : ( <div></div> )}
                     </div>
 
-                    <div className='w-full bg-m flex items-center justify-center p-3 gap-3 sm:h-16 relative'>
+                    <div className='w-full bg-m flex items-center justify-center p-3 px-2.5 gap-3 sm:h-16 relative'>
                         {!session ? (
-                            <div className='absolute top-[-25px] left-0 w-full text-center'>
-                                {/* <h1 className='text-gray-300 text-neutral-600 font-light text-xs translate-y-[8px]'>If you are not logged in, your messages will not persist.</h1> */}
-                            </div>
+                            <></>
                         ) : null}
-                        <textarea name="message" value={messageTextContent} onChange={handleChange} placeholder='Enter a message...' className='resize-none border border-light bg-l text-emerald-200 rounded-lg sm:rounded-full h-[48px] flex-1 p-2 py-1 sm:px-3 sm:py-1.5' />
+                        <textarea name="message" value={messageTextContent} onChange={handleChange} placeholder='Enter a message...' className='resize-none border border-light bg-l text-neutral-200 rounded-lg h-[48px] flex-1 p-2.5 py-1 sm:px-2.5 sm:py-1.5' />
                         <div className='flex flex-col gap-3 h-full'>
-                            {/* <div className='flex gap-3 flex-1 sm:hidden'>
-                                <button className='rounded-lg bg-gray-300 bg-d text-emerald-200 w-1/2 cursor-not-allowed' onClick={scrolling}>G</button>
-                                <button className='rounded-lg bg-gray-300 bg-d text-emerald-200 w-1/2 cursor-not-allowed'>P</button>
-                            </div> */}
-                            <button className='flex items-center justify-center bg-bl text-emerald-200 font-bold rounded-full sm:h-full sm:aspect-square p-3 sm:p-0' onClick={setMessageToSend}><svg className='pt-0.5 pr-0.5' width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d={send} stroke="#fff" stroke-width="2" strokeLinecap="round" strokeLinejoin="round"></path> </g></svg></button>
+                            <button className='flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-neutral-200 font-bold rounded-full sm:h-full sm:aspect-square p-3 sm:p-0' onClick={setMessageToSend}><svg className='pt-0.5 pr-0.5' width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d={send} stroke="#fff" stroke-width="2" strokeLinecap="round" strokeLinejoin="round"></path> </g></svg></button>
                         </div>
                     </div>
                 </>

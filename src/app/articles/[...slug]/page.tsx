@@ -88,40 +88,27 @@ export default function Page({ params }: { params: { slug: string } }) {
                 <Loader />
             ) : (
                 <>
-                <div className='flex-1 relative p-9 sm:p-3 sm:pt-12 grid grid-cols-2 sm:grid-cols-1 auto-rows-min gap-9 sm:border-b border-light overflow-y-scroll'>
+                <div className='flex-1 relative p-3 sm:p-3 sm:pt-12 grid grid-cols-2 sm:grid-cols-1 auto-rows-min gap-9 sm:border-b border-light overflow-y-scroll'>
                     <div className='flex flex-col gap-5 relative'>
                         <Link href="/articles" className='font-light text-sm text-neutral-500 hover:underline'>...back to articles</Link>
                         {/* POST METADATA */}
                         <div className='flex flex-col items-start gap-1'>
                             <div className='flex items-center gap-2 sm:w-full sm:items-end sm:gap-1'>
-                                <h1 className='font-bold text-xl sm:text-xl text-neutral-200'>{article?.title} <span className='font-light text-gray-400 text-xs pt-1 sm:pb-0.5 px-1'> by </span><span className='color-bl'> {article?.name}</span></h1>
+                                <h1 className='font-bold text-xl sm:text-xl text-neutral-200'>{article?.title} <span className='font-light text-gray-400 text-xs pt-1 sm:pb-0.5 px-1'> by </span><span className='text-blue-500'> {article?.name}</span></h1>
                             </div>
                             <span className='text-neutral-600 text-sm'>{article?.date}</span>
                         </div>
 
                         {/* POST CONTENT */}
                         <div className='font-light whitespace-pre-wrap max-w-[800px] text-neutral-400'>
-                            {/* {article?.content.split(' ').map((t, i) => {
-                                let token: React.ReactNode = <span className='font-light'>{t + ' '}</span>
-                                if (t.startsWith('**') && t.endsWith('**')) {
-                                    token = <span className='font-bold'>{t.slice(2, -2) + ' '}</span>
-                                } else {
-                                    if (t.startsWith('*') && t.endsWith('*')) {
-                                        token = <span className='font-italic'>{t.slice(1, -1) + ' '}</span>
-                                    }
-                                }
-                                return (
-                                    <span key={i} className='font-light'>{token}</span>
-                                )
-                            })} */}
                             {article?.content}
                         </div>
 
                         {/* EDIT / DELETE */}
                         {(session && session.user && currentUser == article?.name) ? (
                             <div className='flex gap-3'>
-                                <button className='bg-bl w-8 h-8 p-1.5 rounded' onClick={() => edit_article(article?._id)}><EditIcon /></button>
-                                <button className='bg-red-800 w-8 h-8 p-1 rounded' onClick={() => delete_article(article?._id)}><DeleteIcon /></button>
+                                <button className='bg-blue-600 hover:bg-blue-700 w-8 h-8 p-1.5 rounded' onClick={() => edit_article(article?._id)}><EditIcon /></button>
+                                <button className='bg-red-700 hover:bg-red-800 w-8 h-8 p-1 rounded' onClick={() => delete_article(article?._id)}><DeleteIcon /></button>
                             </div>
                         ) : null}
                     </div>
